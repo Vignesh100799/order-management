@@ -1,0 +1,228 @@
+<article className='container'>
+  <section className='row justify-content-center vh-100'>
+    <div className='col-12 col-sm-12 col-md-12 col-lg-6 '>
+      <div className="login_box">
+        <div className="login_head d-flex justify-content-center colour">
+          <svg
+            width={60}
+            height={60}
+            viewBox="0 0 32 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="d-none d-sm-block" // Hide on small devices
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M31.1597 15.0011C31.1577 19.9743 27.0848 24 22.0622 24C20.8575 24.0017 19.6644 23.7658 18.5514 23.3058C17.4384 22.8459 16.4276 22.1709 15.5771 21.3199C14.7275 22.1712 13.7174 22.8464 12.6049 23.3064C11.4925 23.7664 10.2997 24.0021 9.09551 24C4.06712 24 0 19.972 0 15.0014C0 10.0282 4.06712 6.00136 9.09551 6.00136C10.4704 6.00136 11.7811 6.30053 12.9476 6.84643V2.59116C12.9476 1.15901 14.1239 0 15.5674 0C17.0179 0 18.1895 1.15901 18.1895 2.59116V15.0011C18.1895 17.1089 19.9344 18.808 22.0618 18.808C24.1892 18.808 25.9143 17.1089 25.9163 15.0011V11.7082C25.9163 10.2792 27.0902 9.11393 28.5387 9.11393C29.9795 9.11393 31.1573 10.2792 31.1573 11.7082L31.1597 15.0011ZM5.24183 15.0011C5.24183 17.1089 6.96808 18.808 9.09551 18.808C11.2237 18.808 12.9476 17.1089 12.9476 15.0011C12.9476 12.8929 11.2237 11.1879 9.09551 11.1879C6.96808 11.1879 5.24183 12.8929 5.24183 15.0011Z"
+              fill="#DB551B"
+            />
+          </svg>
+          <h1 className='text-center h1'>
+            ADUDU
+          </h1>
+        </div>
+        {/* Rest of your form */}
+      </div>
+    </div>
+  </section>
+</article>
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import React from "react";
+
+const PriceCard = ({ details }) => {
+  return (
+    <div className="col-lg-4 col-md-8">
+      <div className="card mb-5 mb-lg-0">
+        <div className="card-body">
+          <h5 className="card-title text-muted text-uppercase text-center">{details.title}</h5>
+          <h6 className="card-price text-center">${details.pack}<span className="period">/month</span></h6>
+          <hr />
+            <ul className="fa-ul">
+              {details.features.map((item) => {
+                return (
+                  <li className={item.value ? '' : 'text-muted'}>
+                    <span className="fa-li">
+                      {item.value ? (
+                        <FontAwesomeIcon icon={faCheck} />
+                      ) : (
+                        <FontAwesomeIcon icon={faXmark} />
+                      )}
+                    </span>
+                    {item.access}
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="d-grid">
+              <button className="btn btn-primary text-uppercase">Button</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PriceCard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div className="col-lg-6">
+    <div className="card">
+      <div className="card-body p-4">
+        <div className="d-flex">
+          <div className="flex-shrink-0"><i className="bi bi-chat-right-quote-fill text-primary fs-1" />{data.feedback}</div>
+          <div className="ms-4">
+            <p className="mb-1">T</p>
+            <div className="small text-muted">- {data.customer}, {data.location}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  import React from 'react'
+import FeedbackCard from './FeedbackCard'
+
+const Testimonials = () => {
+    const receivedData=[
+        {
+            feedback:'Thank you for putting together such a great product. We loved working with you and the whole team, and we will be recommending you to others!',
+            customer:'Naveen',
+            location:'London',
+            id:'1'
+        },
+        {
+            feedback:'he whole team was a huge help with putting things together for our company and brand. We will be hiring them again in the near future for additional work!',
+            customer:'Vignesh',
+            location:'France',
+            id:'2'
+        },
+        {
+            feedback:'Thank you for putting together such a great product. We loved working with you and the whole team, and we will be recommending you to others!',
+            customer:'Mugesh',
+            location:'Thailand',
+            id:'3'
+        },
+        {
+            feedback:'he whole team was a huge help with putting things together for our company and brand. We will be hiring them again in the near future for additional work!',
+            customer:'Vignesh',
+            location:'France',
+            id:'4'
+        }
+    ]
+  return (
+<section className="py-5 border-bottom">
+  <div className="container px-5 my-5 px-5">
+    <div className="text-center mb-5">
+      <h2 className="fw-bolder">Customer testimonials</h2>
+      <p className="lead mb-0">Our customers love working with us</p>
+    </div>
+    <div className="row gx-5 justify-content-center">
+     
+        
+        
+       {
+        receivedData.map((data,index)=>{
+            return  <FeedbackCard key={index} data={data} />
+        })
+       }
+
+      
+    </div>
+    </div>
+  
+</section>
+
+  )
+}
+
+export default Testimonials
+
+
+{/* Topbar Search */}
+  <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div className="input-group">
+      <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+      <div className="input-group-append">
+        <button className="btn btn-primary" type="button">
+          <i className="fas fa-search fa-sm" />
+        </button>
+      </div>
+    </div>
+  </form>
+
+{/* Nav Item - Search Dropdown (Visible Only XS) */}
+    <li className="nav-item dropdown no-arrow d-sm-none">
+      <a className="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i className="fas fa-search fa-fw" />
+      </a>
+      
+      <div className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+        <form className="form-inline mr-auto w-100 navbar-search">
+          <div className="input-group">
+            <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+            <div className="input-group-append">
+              <button className="btn btn-primary" type="button">
+                <i className="fas fa-search fa-sm" />
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </li>
+
+
+
+
+
+
+
+
+<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+
+      <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar" aria-controls="bdSidebar" aria-label="Toggle docs navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+</svg>
+
+        <span class="d-none fs-6 pe-1">Browse</span>
+      </button>
