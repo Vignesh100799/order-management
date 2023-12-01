@@ -9,7 +9,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 html,
@@ -28,27 +27,10 @@ body,
   fill: white;
 }
 
-.bg-orange {
-  background-color: var(--orange-head) !important;
-}
 
 .text-orange {
   color: var(--orange-head);
 }
 
-.user-heading h1 {
-  color: var(--orange-head);
-  font-weight: 700;
-  font-size: 3em;
-}
 
 
-/* side bar backgorund */
-.bg-grey {
-  background: #E5E7EB;
-  width: Fill (232px);
-  height: Hug (48px);
-  padding: 12px;
-  border-radius: 8px;
-   
-}

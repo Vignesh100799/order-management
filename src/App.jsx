@@ -4,15 +4,16 @@ import './App.css';
 import Login from './Components/User/Login';
 import ForgotPassword from './Components/User/ForgotPassword';
 import Register from './Components/User/Register';
-// import Sidebar from './Components/navbar/Sidebar';
-import Dashboard from './Components/Navbar/Components/Dashboard';
-import Frontpage from './Components/FrontPage/Frontpage';
-import Admin from './Components/Navbar/Components/Admin';
-import Listing from './Components/Navbar/Components/Listing';
-import Order from './Components/Navbar/Components/Order';
-import Settings from './Components/Navbar/Components/Settings';
-import Community from './Components/Navbar/Components/Links/Community';
-import Tutorial from './Components/Navbar/Components/Links/Tutorial';
+import Dashboard from './core/Dashboard';
+import Frontpage from './Components/LandingPage/Frontpage';
+import Admin from './core/Admin';
+import Listing from './core/Listing';
+import Order from './core/Order';
+import Settings from './core/Settings';
+
+import Community from './core/Community'
+import Tutorial from './core/Tutorial';
+
 
 function App() {
   return (

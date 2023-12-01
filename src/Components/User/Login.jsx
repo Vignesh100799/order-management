@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../icons/Logo";
 import { useFormik } from "formik";
-import './Register.css'
+
 
 const Login = () => {
   const formik = useFormik({

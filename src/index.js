@@ -2,16 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import './Components/Navbar/styles/navbar.css'
+import './Components/User/style/user.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/frame.min.css'; 
-import './assets/css/Frontpage.css'
-import 'bootstrap-icons/font/bootstrap-icons.css'
-import 'bootstrap'
-import 'react-toastify/dist/ReactToastify.css'
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap';
+import 'react-toastify/dist/ReactToastify.css';
+import { Provider } from 'react-redux';
+import { store } from './store';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode> 
-    <App />
+    <Provider store={store} >
+    <App />   
+    </Provider>
   </React.StrictMode>
 );
 

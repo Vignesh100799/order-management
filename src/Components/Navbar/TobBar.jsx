@@ -4,13 +4,23 @@ import messageLogo1 from '../../assets/img/undraw_profile_1.svg'
 import messageLogo2 from '../../assets/img/undraw_profile_2.svg'
 import messageLogo3 from '../../assets/img/undraw_profile_3.svg'
 
-const TobBar = () => {
+
+const TobBar = ({ handleSidebar }) => {
+
+
   return (
-    <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow px-4">
+    <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow px-4 "
+    >
   {/* Sidebar Toggle (Topbar) */}
-  <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
+  <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3"
+  onClick={handleSidebar}
+  >
     <i className="fa fa-bars" />
   </button>
+  <div className='text-orange fw-bolder h1 d-none d-md-block'>
+    ADUDU
+
+  </div>
   
   {/* Topbar Navbar */}
   <ul className="navbar-nav ml-auto">

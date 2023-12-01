@@ -1,9 +1,9 @@
 import React from 'react'
-import Sidebar from '../Sidebar'
-import TobBar from '../TobBar'
 
+import Sidebar from '../Components/Navbar/Sidebar'
+import TobBar from '../Components/Navbar/TobBar'
 
-const Listing = () => {
+const Community = () => {
   return (
     <div id="page-top">
         <div id="wrapper">
@@ -21,4 +21,4 @@ const Listing = () => {
   )
 }
 
-export default Listing
+export default Community

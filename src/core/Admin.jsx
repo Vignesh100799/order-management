@@ -1,22 +1,25 @@
 import React from 'react'
-import Sidebar from '../../Sidebar'
-import TobBar from '../../TobBar'
-const Community = () => {
+import Sidebar from '../Components/Navbar/Sidebar'
+import TobBar from '../Components/Navbar/TobBar'
+
+
+
+const Admin = () => {
   return (
     <div id="page-top">
-        <div id="wrapper">
+      <div id="wrapper">
         <Sidebar />
         <div id="content-wrapper" className="d-flex flex-column">
           <div id="content">
             <TobBar />
 
-            
+
           </div>
         </div>
-         
-    </div>
+
+      </div>
     </div>
   )
 }
 
-export default Community
+export default Admin

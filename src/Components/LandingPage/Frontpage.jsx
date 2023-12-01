@@ -6,7 +6,7 @@ import Pricing from './Pricing'
 import Testimonials from './Testimonials'
 import ContactUs from './ContactUs'
 import Footer from './Footer'
-
+import '../../assets/css/Frontpage.css'
 const Frontpage = () => {
   return (
    <div>
