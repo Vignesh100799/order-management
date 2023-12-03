@@ -29,7 +29,7 @@ export const mainTable = [
       header: 'Service',
     },
     {
-      accessorKey: 'TrackingCode',
+      accessorKey: 'trackingCode',
       header: 'Tracking Code',
     },
 ]
