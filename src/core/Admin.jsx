@@ -27,10 +27,10 @@ const Admin = () => {
       header: 'Actions',
       Cell: ({ row }) => (
         <div className='d-flex justify-content-around'>
-          <Link to={`/view-order/${row.original.orderid}`} className='btn p-0 m-0'>
+          <Link to={`/view-order/${row.original.id}`} className='btn p-0 m-0'>
             <EyeFill className='fs-5 text-orange' />
           </Link>
-          <Link to={`/edit-order/${row.original.orderid}`} className='btn p-0 m-0'>
+          <Link to={`/edit-order/${row.original.id}`} className='btn p-0 m-0'>
             <PencilSquare className='fs-5 text-primary' />
           </Link>
           <button className='btn p-0 m-0' onClick={() => handleDeleteOrder(row.original.id)}>

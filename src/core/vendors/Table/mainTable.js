@@ -5,11 +5,11 @@ export const mainTable = [
       header: 'S.NO',
     },
     {
-      accessorKey: 'orderid',
+      accessorKey: 'orderId',
       header: 'Order Id',
     },
     {
-      accessorKey: 'ordernumber',
+      accessorKey: 'orderNumber',
       header: 'Order Number',
     },
     {
@@ -21,7 +21,7 @@ export const mainTable = [
       header: 'Item',
     },
     {
-      accessorKey: 'customername',
+      accessorKey: 'customerName',
       header: 'Customer Name',
     },
     {
@@ -29,7 +29,7 @@ export const mainTable = [
       header: 'Service',
     },
     {
-      accessorKey: 'Tracking Code',
+      accessorKey: 'TrackingCode',
       header: 'Tracking Code',
     },
 ]
