@@ -1,22 +1,47 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import profileLogo from '../../assets/img/undraw_profile.svg'
 import messageLogo1 from '../../assets/img/undraw_profile_1.svg'
 import messageLogo2 from '../../assets/img/undraw_profile_2.svg'
 import messageLogo3 from '../../assets/img/undraw_profile_3.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSideBarToggle,sideBarToggle } from '../../features/UserReducer'
 
 
-const TobBar = ({ handleSidebar }) => {
+
+
+const TobBar = () => {
+  const dispatch = useDispatch();
+
+const sidebarToggle = useSelector((state)=>state.order_list.sideBarToggle)
+
+const handleSidebar = () => {
+ 
+  dispatch(setSideBarToggle(!sideBarToggle));
+};
+
+const removeSidebar = () => {
+
+  dispatch(setSideBarToggle(sideBarToggle));
+};
+
+
 
 
   return (
     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow px-4 "
     >
-  {/* Sidebar Toggle (Topbar) */}
-  <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3"
-  onClick={handleSidebar}
-  >
-    <i className="fa fa-bars" />
-  </button>
+
+  {
+    sidebarToggle ? <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3"
+    onClick={removeSidebar}
+    >
+      <i className="fa fa-bars" />
+    </button> : <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3"
+    onClick={handleSidebar}
+    >
+      <i className="fa fa-bars" />
+    </button> 
+  }
   <div className='text-orange fw-bolder h1 d-none d-md-block'>
     ADUDU
 

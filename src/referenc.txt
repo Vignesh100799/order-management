@@ -1,3 +1,234 @@
+import React, { useEffect } from 'react';
+import $ from 'jquery';
+import 'datatables.net-bs4';
+import { EyeFill, PencilSquare, TrashFill } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { deleteOrder, deleteUser } from '../../../features/UserReducer';
+
+const Table = ({ orders }) => {
+
+  const dispatch = useDispatch()
+  console.log('Table component rendered');
+
+
+  const handleDeleteOrder = async (orderId) => {
+    try {
+      await dispatch(deleteOrder(orderId));
+    } catch (error) {
+      console.error('Error deleting order:', error);
+    }
+  };
+
+useEffect(() => {
+  if (!orders || orders.length === 0) {
+      return;
+  }
+
+  const table = $('#dataTable').DataTable({
+      order: [[0, 'desc']],
+  });
+
+  return () => {
+      table.destroy();
+  };
+}, [orders]); // Ensure that the useEffect depends on the orders prop
+
+
+  return (
+    <div className='table-responsive'>
+      <table className='table table-bordered text-center' id='dataTable' width='100%' cellSpacing='0'>
+        <thead>
+          <tr>
+            <th className='p-3'>S.No</th>
+            <th className='p-3'>ORDER ID</th>
+            <th className='p-3'>ORDER NUMBER</th>
+            <th className='p-3'>STATUS</th>
+            <th className='p-3'>ITEM</th>
+            <th className='p-3'>CUSTOMER</th>
+            <th className='p-3'>SHIPPING SERVICE</th>
+            <th className='p-3'>TRACKING CODE</th>
+            <th className='p-3'>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((user) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.orderId}</td>
+              <td>{user.orderNumber}</td>
+              <td>{user.status}</td>
+              <td>{user.item}</td>
+              <td>{user.customerName}</td>
+              <td>{user.shippingService}</td>
+              <td>{user.trackingCode}</td>
+              <td className='d-flex justify-content-around'>
+                <Link to={`/view-order/${user.id}`} className='btn p-0 m-0'><EyeFill className='fs-5 text-orange' /></Link>
+                <Link to={`/edit-order/${user.id}`} className="btn p-0 m-0"><PencilSquare className='fs-5 text-primary' /></Link>
+                <button className="btn p-0 m-0" onClick={()=> handleDeleteOrder(user.id)} ><TrashFill className='fs-5 text-danger' /></button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default Table;
+
+
+
+import React, { useEffect } from 'react';
+import $ from 'jquery';
+import 'datatables.net-bs4';
+import { EyeFill, PencilSquare, TrashFill } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { deleteOrder } from '../../../features/UserReducer';
+// import 'jquery/dist/jquery.min.js';
+// import "datatables.net-dt/js/dataTables.dataTables";
+
+class Table extends React.Component {
+  componentDidMount() {
+    // Initialize datatable
+    $(document).ready(function () {
+      $('#dataTable').DataTable();
+    });
+  }
+
+   handleDeleteOrder = async (orderId) => {
+    const { dispatch } = this.props;
+    try {
+      await dispatch(deleteOrder(orderId));
+    } catch (error) {
+      console.error('Error deleting order:', error);
+    }
+  };
+
+  render() {
+    const { orders } = this.props;
+
+    return (
+      <div className='table-responsive'>
+        <table className='table table-bordered text-center' id='dataTable' width='100%' cellSpacing='0'>
+          <thead>
+            <tr>
+              <th className='p-3'>S.No</th>
+              <th className='p-3'>ORDER ID</th>
+              <th className='p-3'>ORDER NUMBER</th>
+              <th className='p-3'>STATUS</th>
+              <th className='p-3'>ITEM</th>
+              <th className='p-3'>CUSTOMER</th>
+              <th className='p-3'>SHIPPING SERVICE</th>
+              <th className='p-3'>TRACKING CODE</th>
+              <th className='p-3'>ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.orderId}</td>
+                <td>{user.orderNumber}</td>
+                <td>{user.status}</td>
+                <td>{user.item}</td>
+                <td>{user.customerName}</td>
+                <td>{user.shippingService}</td>
+                <td>{user.trackingCode}</td>
+                <td className='d-flex justify-content-around'>
+                  <Link to={`/view-order/${user.id}`} className='btn p-0 m-0'><EyeFill className='fs-5 text-orange' /></Link>
+                  <Link to={`/edit-order/${user.id}`} className="btn p-0 m-0"><PencilSquare className='fs-5 text-primary' /></Link>
+                  <button className="btn p-0 m-0" onClick={() => this.handleDeleteOrder(user.id)}><TrashFill className='fs-5 text-danger' /></button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
+
+export default Table;
+
+// [fetchOrders.pending]: (state) => {
+//     state.status = 'loading';
+// },
+// [fetchOrders.fulfilled] : (state, action) => {
+//     state.status = 'succeeded';
+//     state.orders = action.payload;
+// },
+// [fetchOrders.rejected] : (state, action) => {
+//     state.status = 'failed';
+//     state.error = action.error.message;
+// },
+// [deleteOrder.fulfilled] : (state, action) => {
+//     const deletedOrderId = action.payload;
+//     state.orders = state.orders.filter((order) => order.id !== deletedOrderId);
+// },
+// [createOrder.fulfilled] : (state, action) => {
+//     state.status = 'succeeded';
+//     state.orders.push(action.payload);
+// },
+// [updateOrder.fulfilled] : (state, action) => {
+//     const updatedOrder = action.payload;
+//     const index = state.orders.findIndex((order) => order.id === updatedOrder.id);
+//     if (index !== -1) {
+//         state.orders[index] = updatedOrder;
+//     }
+// }
+
+
+
+// setUsers: (state, action) => {
+//     state.orders = action.payload;
+//     return state;
+// },
+// deleteUser: (state, action) => {
+//     const id = action.payload;
+//     state.orders = state.orders.filter((user) => user.id !== id);
+//     return state;
+// },
+// editUser: (state, action) => {
+//     const id = action.payload;
+//     state.orders = state.orders.filter((user) => user.id !== id);
+//     return state;
+// },
+// setSideBarToggle: (state, action) => {
+//     state.sideBarToggle = action.payload
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <article className='container'>
   <section className='row justify-content-center vh-100'>
     <div className='col-12 col-sm-12 col-md-12 col-lg-6 '>

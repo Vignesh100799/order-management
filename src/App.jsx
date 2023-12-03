@@ -13,6 +13,9 @@ import Settings from './core/Settings';
 
 import Community from './core/Community'
 import Tutorial from './core/Tutorial';
+import ViewOder from './core/vendors/crud/ViewOder';
+import EditOrder from './core/vendors/crud/EditOrder';
+import CreateOder from './core/vendors/crud/CreateOder';
 
 
 function App() {
@@ -33,6 +36,9 @@ function App() {
     <Route path='/login' element={<Login />} />
     <Route path='/register' element={<Register />} />
     <Route path='/forgot-password' element={<ForgotPassword />} />
+    <Route path='/create-order' element={<CreateOder />} />
+    <Route path='/view-order/:id' element={<ViewOder />} />
+    <Route path='/edit-order/:id' element={<EditOrder />} />
    </Routes>
 
     
