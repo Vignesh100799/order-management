@@ -2,22 +2,28 @@ import React, { useEffect, useMemo } from 'react'
 import Sidebar from '../Components/Navbar/Sidebar'
 import TobBar from '../Components/Navbar/TobBar'
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteOrder, fetchOrders } from '../features/UserReducer';
+import { deleteOrder, setOrder } from '../features/UserReducer';
 import { HashLoader } from 'react-spinners';
 import { EyeFill, PencilSquare, Plus, TrashFill } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { MaterialReactTable } from 'material-react-table';
 import { mainTable } from './vendors/Table/mainTable';
+import axios from 'axios';
 
 
 const Admin = () => {
   const dispatch = useDispatch();
+  const params = useParams()
   const { orders, status, error } = useSelector((state) => state.order_list);
-  const handleDeleteOrder =(orderId) => {
+  const handleDeleteOrder = async (orderId) => {
     try {
-     dispatch(deleteOrder(orderId));
+      await axios.delete(
+        `https://65630c3eee04015769a6bb77.mockapi.io/orders/${orderId}`
+      );
+
+      dispatch(deleteOrder(orderId));
     } catch (error) {
-      console.error('Error deleting order:', error);
+      console.error("Error deleting order:", error);
     }
   };
 
@@ -40,7 +46,8 @@ const Admin = () => {
       )
     }
   ]
-  const reversedOrders = useMemo(() => [...orders].reverse(), [orders]);
+  // const reversedOrders = useMemo(() => (orders ? [...orders].reverse() : []), [orders]);
+
   const columns = useMemo(
     () => [...mainTable,...actions],
     [handleDeleteOrder] // Include dependencies if any
@@ -49,7 +56,17 @@ const Admin = () => {
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchOrders());
+      // Assuming fetchOrders is a function that fetches orders from the API
+      const fetchData = async () => {
+        try {
+          const response = await axios.get("https://65630c3eee04015769a6bb77.mockapi.io/orders");
+          dispatch(setOrder(response.data)); // Assuming response.data is an array of orders
+        } catch (error) {
+          console.error('Error fetching orders:', error);
+        }
+      };
+  
+      fetchData();
     }
   }, [status, dispatch]);
 
@@ -76,7 +93,7 @@ const Admin = () => {
                     status === 'loading' ? <HashLoader color="#DB551B"  className="text-center" /> :
                     <MaterialReactTable
                     columns={columns}
-                    data={reversedOrders}
+                    data={orders}
                     enableGlobalFilterModes
                     initialState={{
                       showGlobalFilter: true,
