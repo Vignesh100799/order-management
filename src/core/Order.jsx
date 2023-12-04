@@ -74,12 +74,14 @@ const Order = () => {
   useEffect(() => {
     
       const fetchData = async () => {
-        try {
-          dispatch(setLoading())
-          const response = await axios.get(`${config.ordersApi}/orders`);
-          dispatch(setOrder(response.data)); 
-        } catch (error) {
-          console.error("Error fetching orders:", error);
+        if(orders.length===0) {
+          try {
+            dispatch(setLoading())
+            const response = await axios.get(`${config.ordersApi}/orders`);
+            dispatch(setOrder(response.data)); 
+          } catch (error) {
+            console.error("Error fetching orders:", error);
+          }
         }
       };
 

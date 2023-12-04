@@ -9,6 +9,7 @@ import { Link} from 'react-router-dom';
 import { MaterialReactTable } from 'material-react-table';
 import { mainTable } from './vendors/Table/mainTable';
 import axios from 'axios';
+import { config } from '../config/config';
 
 
 const Admin = () => {
@@ -18,7 +19,7 @@ const Admin = () => {
   const handleDeleteOrder = async (orderId) => {
     try {
       await axios.delete(
-        `https://65630c3eee04015769a6bb77.mockapi.io/orders/${orderId}`
+        `${config.ordersApi}/orders/${orderId}`
       );
       dispatch(deleteOrder(orderId));
     } catch (error) {
@@ -71,24 +72,24 @@ const Admin = () => {
     [handleDeleteOrder]
   );
 
+  
   useEffect(() => {
     
-      
-      const fetchData = async () => {
+    const fetchData = async () => {
+      if(orders.length===0) {
         try {
           dispatch(setLoading())
-          const response = await axios.get(
-            "https://65630c3eee04015769a6bb77.mockapi.io/orders"
-          );
+          const response = await axios.get(`${config.ordersApi}/orders`);
           dispatch(setOrder(response.data)); 
         } catch (error) {
           console.error("Error fetching orders:", error);
         }
-      };
+      }
+    };
 
-      fetchData();
-    
-  }, [loading, dispatch]);
+    fetchData();
+  
+}, [loading, dispatch]);
 
   return (
     <div id="page-top">
