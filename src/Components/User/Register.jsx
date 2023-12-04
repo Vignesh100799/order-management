@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../icons/Logo";
 import { useFormik } from "formik";
+import axios from "axios";
+import { toast } from "react-toastify";
 const Register = () => {
   const formik = useFormik({
     initialValues: {
@@ -42,9 +44,22 @@ const Register = () => {
 
       return errors;
     },
-    onSubmit: (values, reset) => {
-      console.log(values);
-      reset.resetForm();
+    onSubmit: async(values) => {
+      try {
+        const response = await axios.post('https://65615e6adcd355c08323c948.mockapi.io/registered-users',values)
+        if(response.status===201){
+          toast.success('Registration Successfully done 😃!', {
+            position: 'top-center',
+          });
+        }
+        formik.resetForm()
+      } catch (error) {
+        console.error('Error during registration:', error);
+        toast.error('Error during registration. Please try again.', {
+          position: 'top-center',
+        });
+        
+      }
     },
   });
 
@@ -146,6 +161,12 @@ const Register = () => {
                   >
                     Register Account
                   </button>
+                  <a href="..." className="btn btn-google btn-user btn-block">
+                                    <i className="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="..." className="btn btn-facebook btn-user btn-block">
+                                    <i className="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                </a>
                   <hr />
                 </form>
                 <hr />

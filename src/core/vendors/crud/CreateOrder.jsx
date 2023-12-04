@@ -5,10 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { validationSchema } from "./Schema/validationSchema";
 import { useDispatch } from "react-redux";
-import { createOrder } from "../../../features/UserReducer";
-const CreateOder = () => {
+
+
+import axios from "axios";
+import { createOder } from "../../../features/UserReducer";
+const CreateOrder = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    
     const formik = useFormik({
         initialValues: {
             orderId: "",
@@ -20,12 +24,15 @@ const CreateOder = () => {
             trackingCode: "",
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
-            
-            dispatch(createOrder(values))
-            console.log(values);
+        onSubmit: async (values) => {
+            try {
+                const response = await axios.post("https://65630c3eee04015769a6bb77.mockapi.io/orders",values)
+                dispatch(createOder(response.data))
+                navigate('/admin')
+            } catch (error) {
+                console.error(error)
+            }         
             formik.resetForm();
-            navigate('/admin')
         },
 
     })
@@ -229,4 +236,4 @@ const CreateOder = () => {
     );
 };
 
-export default CreateOder;
+export default CreateOrder;

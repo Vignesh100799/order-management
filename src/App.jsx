@@ -13,9 +13,10 @@ import Settings from './core/Settings';
 
 import Community from './core/Community'
 import Tutorial from './core/Tutorial';
-import ViewOder from './core/vendors/crud/ViewOder';
+import ViewOrder from './core/vendors/crud/ViewOrder';
 import EditOrder from './core/vendors/crud/EditOrder';
-import CreateOder from './core/vendors/crud/CreateOder';
+import CreateOrder from './core/vendors/crud/CreateOrder';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
    <Routes>
     
     <Route path='/' element={<Frontpage />} />
+    <Route path='/login' element={<Login />} />
+    <Route path='/register' element={<Register />} />
+    <Route path='/forgot-password' element={<ForgotPassword />} />
     <Route path='/dashboard' element={<Dashboard />} />
     <Route path='/admin' element={<Admin />} />
     <Route path='/listing' element={<Listing />} />
@@ -33,14 +37,11 @@ function App() {
     <Route path='/settings' element={<Settings />} />
     <Route path='/community' element={<Community />} />
     <Route path='/tutorial' element={<Tutorial />} />
-    <Route path='/login' element={<Login />} />
-    <Route path='/register' element={<Register />} />
-    <Route path='/forgot-password' element={<ForgotPassword />} />
-    <Route path='/create-order' element={<CreateOder />} />
-    <Route path='/view-order/:id' element={<ViewOder />} />
+    <Route path='/create-order' element={<CreateOrder />} />
+    <Route path='/view-order/:id' element={<ViewOrder />} />
     <Route path='/edit-order/:id' element={<EditOrder />} />
    </Routes>
-
+<ToastContainer />
     
 </BrowserRouter>
   </div>

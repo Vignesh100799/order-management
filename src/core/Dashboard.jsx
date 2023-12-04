@@ -1,46 +1,67 @@
-import React, { useState } from "react";
+import React, { useEffect} from "react";
 import Sidebar from "../Components/Navbar/Sidebar";
 import TobBar from "../Components/Navbar/TobBar";
 import LineChartOD from "./vendors/charts/LineChart";
 import ReportCard from "./vendors/others/ReportCard";
 import './vendors/style/core.css'
 import PieChartOD from "./vendors/charts/PieChart";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { setLoading, setOrder } from "../features/UserReducer";
+
 
 const Dashboard = () => {
-  const [sidebarToggle, setSidebarToggle] = useState(true)
-
-  const handleSidebar = () => {
-    setSidebarToggle((prevSidebarToggle) => !prevSidebarToggle)
-  }
+  const { orders,loading} = useSelector((state) => state.order_list);
+  const dash = [
+    {
+      title : 'total ordered',
+      value: orders.length,
+      icon: "fa-truck"
+    },
+    {
+      title : 'total delivered',
+      value: orders.filter((order) => order.status === 'delivered').length,
+      icon: "fa-truck"
+    },
+    {
+      title : 'new orders',
+      value: orders.filter((order) => order.status === 'order').length,
+      icon: "fa-truck"
+    },
+  ]
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    const getData = async() =>{
+      try {
+        dispatch(setLoading())
+        const response = await axios.get('https://65630c3eee04015769a6bb77.mockapi.io/orders')
+      dispatch(setOrder(response.data))
+        
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getData()
+ 
+  },[dispatch])
   return (
     <div id="page-top">
       <div id="wrapper">
-        <Sidebar
-          sidebarToggle={sidebarToggle}
-          setSidebarToggle={setSidebarToggle}
-          handleSidebar={handleSidebar}
-        />
+        <Sidebar />
         <div id="content-wrapper" className="d-flex flex-column">
           <div id="content">
-            <TobBar
-              handleSidebar={handleSidebar}
-              sidebarToggle={sidebarToggle}
-              setSidebarToggle={setSidebarToggle}
-            />
-
-
+            <TobBar />
             <div className="container-fluid">
               <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
                 {/* <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i className="fas fa-download fa-sm text-white-50" /> Generate Report</a> */}
               </div>
               <div className="row">
-                <ReportCard />
-                <ReportCard />
-                <ReportCard />
-                <ReportCard />
-                {/* <ReportCard />
-                <ReportCard /> */}
+               
+                {
+                  dash.map((report,index)=> <ReportCard {...report} loading={loading}  key={index} /> )
+                }
+                
               </div>
 
               <div className="row ">

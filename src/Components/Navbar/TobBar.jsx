@@ -5,6 +5,8 @@ import messageLogo2 from '../../assets/img/undraw_profile_2.svg'
 import messageLogo3 from '../../assets/img/undraw_profile_3.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSideBarToggle,sideBarToggle } from '../../features/UserReducer'
+import { Link } from 'react-router-dom'
+import { logout } from '../User/authService'
 
 
 
@@ -179,10 +181,10 @@ const removeSidebar = () => {
           Activity Log
         </a>
         <div className="dropdown-divider" />
-        <a className="dropdown-item" href="#" >
+        <Link className="dropdown-item" onClick={logout} >
           <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
           Logout
-        </a>
+        </Link>
       </div>
     </li>
     

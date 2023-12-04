@@ -12,10 +12,10 @@ export const mainTable = [
       accessorKey: 'orderNumber',
       header: 'Order Number',
     },
-    {
-      accessorKey: 'status',
-      header: 'Status',
-    },
+    // {
+    //   accessorKey: 'status',
+    //   header: 'Status',
+    // },
     {
       accessorKey: 'item',
       header: 'Item',
