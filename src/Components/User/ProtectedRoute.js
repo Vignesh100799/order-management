@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, useNavigate } from 'react-router-dom';
+import { Navigate, Route, useNavigate } from 'react-router-dom';
 import { isAuthenticated } from './authService';
 
 const ProtectedRoute = ({ element, ...rest }) => {
@@ -13,4 +13,8 @@ const ProtectedRoute = ({ element, ...rest }) => {
     }
   };
   
-  export default ProtectedRoute;
+
+  export function PrivateRoute({ children }) {
+    const auth = isAuthenticated()
+    return auth ? <>{children}</> : <Navigate to="/login" />;
+  }

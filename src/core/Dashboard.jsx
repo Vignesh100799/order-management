@@ -8,6 +8,7 @@ import PieChartOD from "./vendors/charts/PieChart";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setLoading, setOrder } from "../features/UserReducer";
+import { config } from "../config/config";
 
 
 const Dashboard = () => {
@@ -34,7 +35,7 @@ const Dashboard = () => {
     const getData = async() =>{
       try {
         dispatch(setLoading())
-        const response = await axios.get('https://65630c3eee04015769a6bb77.mockapi.io/orders')
+        const response = await axios.get(`${config.ordersApi}/orders`)
       dispatch(setOrder(response.data))
         
       } catch (error) {

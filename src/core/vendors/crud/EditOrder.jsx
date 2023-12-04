@@ -7,6 +7,7 @@ import { validationSchema } from "./Schema/validationSchema";
 import TobBar from "../../../Components/Navbar/TobBar";
 import Sidebar from "../../../Components/Navbar/Sidebar";
 import axios from "axios";
+import { config } from "../../../config/config";
 
 const EditOrder = () => {
   const dispatch = useDispatch();
@@ -27,11 +28,10 @@ const EditOrder = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const updatedData = await axios.put(`https://65630c3eee04015769a6bb77.mockapi.io/orders/${params.id}`,
-      values,
-      navigate('/admin')
-      )
+        const updatedData = await axios.put(`${config.ordersApi}/orders/${params.id}`,
+      values)
       dispatch(editOrder(updatedData.data))
+      navigate('/admin')
       } catch (error) {
         console.error(error)
       }
@@ -45,14 +45,14 @@ const EditOrder = () => {
           console.error("Error in edit order 45");
           return;
         }
-        const dataList = await axios.get(`https://65630c3eee04015769a6bb77.mockapi.io/orders/${params.id}`);
+        const dataList = await axios.get(`${config.ordersApi}/orders/${params.id}`);
         dispatch(editOrder({ id: dataList.data.id, ...dataList.data }));
         formik.setValues(dataList.data);
       } catch (error) {
         console.log(error);
       }
     };
-    getData(); // Call the function here
+    getData();
   
   }, []);
   

@@ -3,28 +3,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Sidebar from "../../../Components/Navbar/Sidebar";
 import TobBar from "../../../Components/Navbar/TobBar";
-import { setOrder } from "../../../features/UserReducer";
+import { setOrder, viewOrder } from "../../../features/UserReducer";
 import axios from "axios";
+import { config } from "../../../config/config";
 
 const ViewOrder = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const { orders} = useSelector((state) => state.order_list);
+  const { viewOrderInfo} = useSelector((state) => state.order_list);
 
   useEffect(() => {
     const getData = async () => {
       try {
         const order = await axios.get(
-          `https://65630c3eee04015769a6bb77.mockapi.io/orders/${params.id}`
+          `${config.ordersApi}/orders/${params.id}`
         );
-        dispatch(setOrder(order.data));
-        console.log(orders);
+        dispatch(viewOrder(order.data));
+        console.log(viewOrderInfo);
       } catch (error) {
         console.log(error);
       }
     };
     getData();
-  }, []);
+  }, [dispatch, params.id]);
   return (
     <div>
       <div id="page-top">
@@ -47,11 +48,11 @@ const ViewOrder = () => {
                       </div>
                       <div className="card-body">
                         <div>
-                          {orders && (
+                          {viewOrderInfo && (
                             <div>
-                              <p>Order ID: {orders.id}</p>
-                              <p>Order Number: {orders.orderNumber}</p>
-                              <p>Customer Name: {orders.customerName}</p>
+                              <p>Order ID: {viewOrderInfo.id}</p>
+                              <p>Order Number: {viewOrderInfo.orderNumber}</p>
+                              <p>Customer Name: {viewOrderInfo.customerName}</p>
                             </div>
                           )}
                         </div>

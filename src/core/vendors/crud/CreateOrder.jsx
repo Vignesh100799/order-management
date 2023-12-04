@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 
 import axios from "axios";
 import { createOder } from "../../../features/UserReducer";
+import { config } from "../../../config/config";
 const CreateOrder = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -26,7 +27,7 @@ const CreateOrder = () => {
         validationSchema: validationSchema,
         onSubmit: async (values) => {
             try {
-                const response = await axios.post("https://65630c3eee04015769a6bb77.mockapi.io/orders",values)
+                const response = await axios.post(`${config.ordersApi}/orders`,values)
                 dispatch(createOder(response.data))
                 navigate('/admin')
             } catch (error) {

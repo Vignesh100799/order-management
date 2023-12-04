@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../icons/Logo";
 import { useFormik } from "formik";
 import { login } from "./authService";
+import { loginValidationSchema } from "./schema/validationSchema";
 
 
 const Login = () => {
@@ -13,22 +14,7 @@ const Login = () => {
       email: "",
       password: "",
     },
-    validate: (values) => {
-      let errors = {}
-      if (values.email === '') {
-        errors.email = "Please enter the email"
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
-      }
-      if (values.password === '') {
-        errors.password = "Please enter the password"
-      } else if (values.password.length < 3 || values.password.length >= 15) {
-        errors.password = 'password should be min 3 and max 8 characters'
-      } else if (!/^[a-zA-Z0-9!@#$%^&*]{6,16}$/i.test(values.password)) {
-        errors.password = 'password must contain atlest one special characters'
-      }
-      return errors
-    },
+    validationSchema: loginValidationSchema,
     onSubmit: async (values, reset) => {
       try {
         await login(values.email, values.password);
@@ -72,27 +58,39 @@ const Login = () => {
                         )}
                         <div className="form-group">
                           <input
-                            className="form-control form-control-user"
-                            id="exampleInputEmail"
+                            className={`form-control form-control-user ${ formik.touched.email &&
+                            formik.errors.email ? 'is-invalid' : ''}`}
+                            id="email"
                             aria-describedby="emailHelp"
                             placeholder="Enter Email Address..."
                             name="email"
                             value={formik.values.email}
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                           />
-                          <span className="d-block ms-3 text-danger small">{formik.errors.email}</span>
+                          {
+                            formik.touched.email && formik.errors.email && (
+                              <span className="d-block ms-3 text-danger small invalid-feedback">{formik.errors.email}</span>
+                            )
+                          }
                         </div>
                         <div className="form-group">
                           <input
                             type="password"
-                            className="form-control form-control-user"
-                            id="exampleInputPassword"
+                            className={`form-control form-control-user ${ formik.touched.password &&
+                            formik.errors.password ? 'is-invalid' : ''}`}
+                            id="password"
                             placeholder="Password"
                             name="password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                           />
-                          <span className="d-block ms-3 text-danger small" >{formik.errors.password}</span>
+                          {
+                            formik.touched.password && formik.errors.password && (
+                              <span className="d-block ms-3 text-danger small invalid-feedback">{formik.errors.password}</span>
+                            )
+                          }
                         </div>
                         <div className="form-group">
                           <div className="custom-control custom-checkbox small">

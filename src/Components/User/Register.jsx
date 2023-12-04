@@ -1,9 +1,11 @@
+import { registerValidationSchema } from "./schema/validationSchema";
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../icons/Logo";
 import { useFormik } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { config } from "../config/config";
 const Register = () => {
   const formik = useFormik({
     initialValues: {
@@ -13,40 +15,10 @@ const Register = () => {
       password: "",
       cpassword: "",
     },
-    validate: (values) => {
-      let errors = {};
-
-      if (values.firstname === "") {
-        errors.firstname = "* Required";
-      }
-      if (values.lastname === "") {
-        errors.lastname = "* Required";
-      }
-      if (values.email === "") {
-        errors.email = "* Required";
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-      ) {
-        errors.email = "Invalid email address";
-      }
-      if (values.password === "") {
-        errors.password = "* Required";
-      } else if (values.password.length < 3 || values.password.length >= 15) {
-        errors.password = "password should be min 3 and max 8 characters";
-      } else if (!/^[a-zA-Z0-9!@#$%^&*]{6,16}$/i.test(values.password)) {
-        errors.password = "password must contain atlest one special characters";
-      }
-      if (values.cpassword === "") {
-        errors.cpassword = "* Required";
-      } else if (values.cpassword !== values.password) {
-        errors.cpassword = "password fleid doesn't match";
-      }
-
-      return errors;
-    },
+    validationSchema: registerValidationSchema,
     onSubmit: async(values) => {
       try {
-        const response = await axios.post('https://65615e6adcd355c08323c948.mockapi.io/registered-users',values)
+        const response = await axios.post(`${config.usersApi}/registered-users`,values)
         if(response.status===201){
           toast.success('Registration Successfully done 😃!', {
             position: 'top-center',
@@ -85,74 +57,104 @@ const Register = () => {
                     <div className="col-sm-6 mb-3 mb-sm-0">
                       <input
                         type="text"
-                        className="form-control form-control-user"
-                        id="exampleFirstName"
+                        className= {`form-control form-control-user ${ formik.touched.firstname && 
+                          formik.errors.firstname ? "is-invalid" : ''}`}
+                        id="firstname"
                         placeholder="First Name"
                         name="firstname"
                         value={formik.values.firstname}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
-                      <span className="d-block ms-3 text-danger small">
+                      {
+                        formik.touched.firstname && formik.errors.firstname && (
+                          <span className="d-block ms-3 text-danger small invalid-feedback">
                         {formik.errors.firstname}
                       </span>
+                        )
+                      }
                     </div>
-                    <div className="col-sm-6">
+                    <div className="col-sm-6 mb-3 mb-sm-0">
                       <input
                         type="text"
-                        className="form-control form-control-user"
-                        id="exampleLastName"
+                        className= {`form-control form-control-user ${ formik.touched.lastname && 
+                          formik.errors.lastname ? "is-invalid" : ''}`}
+                        id="lastname"
                         placeholder="Last Name"
                         name="lastname"
                         value={formik.values.lastname}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
-                      <span className="d-block ms-3 text-danger small">
+                      {
+                        formik.touched.lastname && formik.errors.lastname && (
+                          <span className="d-block ms-3 text-danger small invalid-feedback">
                         {formik.errors.lastname}
                       </span>
+                        )
+                      }
                     </div>
                   </div>
                   <div className="form-group">
-                    <input
-                      type="text"
-                      className="form-control form-control-user"
-                      id="exampleInputEmail"
-                      placeholder="Email Address"
-                      name="email"
-                      value={formik.values.email}
-                      onChange={formik.handleChange}
-                    />
-                    <span className="d-block ms-3 text-danger small">
-                      {formik.errors.email}
-                    </span>
+                  <input
+                        type="text"
+                        className= {`form-control form-control-user ${ formik.touched.email && 
+                          formik.errors.email ? "is-invalid" : ''}`}
+                        id="email"
+                        placeholder="E-mail"
+                        name="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                      />
+                      {
+                        formik.touched.email && formik.errors.email && (
+                          <span className="d-block ms-3 text-danger small invalid-feedback">
+                        {formik.errors.email}
+                      </span>
+                        )
+                      }
                   </div>
                   <div className="form-group row">
                     <div className="col-sm-6 mb-3 mb-sm-0">
                       <input
                         type="password"
-                        className="form-control form-control-user"
-                        id="exampleInputPassword"
-                        placeholder="Password"
+                        className= {`form-control form-control-user ${ formik.touched.password && 
+                          formik.errors.password ? "is-invalid" : ''}`}
+                        id="password"
+                        placeholder="Last Name"
                         name="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
-                      <span className="d-block ms-3 text-danger small">
+                      {
+                        formik.touched.password && formik.errors.password && (
+                          <span className="d-block ms-3 text-danger small invalid-feedback">
                         {formik.errors.password}
                       </span>
+                        )
+                      }
                     </div>
                     <div className="col-sm-6">
-                      <input
+                    <input
                         type="password"
-                        className="form-control form-control-user"
-                        id="exampleRepeatPassword"
-                        placeholder="Repeat Password"
+                        className= {`form-control form-control-user ${ formik.touched.cpassword && 
+                          formik.errors.cpassword ? "is-invalid" : ''}`}
+                        id="cpassword"
+                        placeholder="Last Name"
                         name="cpassword"
                         value={formik.values.cpassword}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
-                      <span className="d-block ms-3 text-danger small">
+                      {
+                        formik.touched.cpassword && formik.errors.cpassword && (
+                          <span className="d-block ms-3 text-danger small invalid-feedback">
                         {formik.errors.cpassword}
                       </span>
+                        )
+                      }
                     </div>
                   </div>
                   <button

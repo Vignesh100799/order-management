@@ -1,9 +1,10 @@
 
 import axios from 'axios';
+import { config } from '../config/config';
 
 export const login = async (email, password) => {
     try {
-      const response = await axios.get('https://65615e6adcd355c08323c948.mockapi.io/registered-users');
+      const response = await axios.get(`${config.usersApi}/registered-users`);
       const registeredUsers = response.data;
       const user = registeredUsers.find(user => user.email === email);
       if (user && user.password === password) { 

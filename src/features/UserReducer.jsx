@@ -5,23 +5,35 @@ export const userSlice = createSlice({
     initialState: {
         orders: [],
         loading: false,
+        viewOrderInfo:{}
     },
     reducers: {
         setOrder: (state, action) => {
-            state.orders = action.payload;
-            state.loading = false;
-            return state
-        },
+            return {
+              ...state,
+              orders: action.payload,
+              loading: false,
+            };
+          },
         createOder:(state,action) =>{
             state.orders = [...state.orders,action.payload]
             state.loading = false;
             return state
         },
+        viewOrder:(state,actions)=>{
+            state.viewOrderInfo = actions.payload;
+            state.loading = false;
+            return state
+        },
 
         editOrder: (state, action) => {
-            const id = action.payload;
-            state.orders = state.orders.filter((details) => details.id !== id);
-        },
+            const updatedOrder = action.payload;
+            const index = state.orders.findIndex((order) => order.id === updatedOrder.id);
+            if (index !== -1) {
+              state.orders[index] = updatedOrder;
+            }
+          },
+          
         deleteOrder: (state, action) => {
             const id = action.payload;
             state.orders = state.orders.filter((details) => details.id !== id);
@@ -40,6 +52,7 @@ export const {
     sideBarToggle,
     setOrder,
     createOder,
+    viewOrder,
     editOrder,
     deleteOrder,
     setLoading

@@ -17,6 +17,7 @@ import ViewOrder from './core/vendors/crud/ViewOrder';
 import EditOrder from './core/vendors/crud/EditOrder';
 import CreateOrder from './core/vendors/crud/CreateOrder';
 import { ToastContainer } from 'react-toastify';
+// import EventForm from './EventForm';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
     
     <Route path='/' element={<Frontpage />} />
     <Route path='/login' element={<Login />} />
+    {/* <Route path='/event' element={<EventForm />} /> */}
     <Route path='/register' element={<Register />} />
     <Route path='/forgot-password' element={<ForgotPassword />} />
     <Route path='/dashboard' element={<Dashboard />} />
