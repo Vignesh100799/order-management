@@ -1,9 +1,12 @@
 
 export const mainTable = [
-    {
-      accessorKey: 'id',
-      header: 'S.NO',
-    },
+    // {
+    //   accessorKey: 'sno',  // New accessorKey for S.NO
+    //   header: 'S.NO',
+    //   Cell: ({ row }) => (
+    //     <span>{row.index + 1}</span>
+    //   ),
+    // },
     {
       accessorKey: 'orderId',
       header: 'Order Id',

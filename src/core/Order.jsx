@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import Sidebar from "../Components/Navbar/Sidebar";
-import TobBar from "../Components/Navbar/TobBar";
+
 import { useDispatch, useSelector } from "react-redux";
 import { deleteOrder, setLoading, setOrder } from "../features/UserReducer";
 import { HashLoader } from "react-spinners";
@@ -10,6 +9,7 @@ import { MaterialReactTable } from "material-react-table";
 import { mainTable } from "./vendors/Table/mainTable";
 import axios from "axios";
 import { config } from "../config/config";
+import Layout from "./layout/Layout";
 
 const Order = () => {
   const dispatch = useDispatch();
@@ -90,13 +90,8 @@ const Order = () => {
   }, [dispatch]);
 
   return (
-    <div id="page-top">
-      <div id="wrapper">
-        <Sidebar />
-        <div id="content-wrapper" className="d-flex flex-column">
-          <div id="content">
-            <TobBar />
-            <div className="container-fluid">
+
+              <Layout>
               <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">Orders</h1>
                 <Link
@@ -108,15 +103,15 @@ const Order = () => {
                   create order
                 </Link>
               </div>
-              <div className="card shadow mb-4">
+              <div className="card shadow mb-4 align-self-center">
                 <div className="card-header py-3">
                   <h6 className="m-0 font-weight-bold text-orange text-center">
                     DataTables Example
                   </h6>
                 </div>
-                <div className="card-body d-flex justify-content-center">
+                {/* <div className="card-body d-flex justify-content-center"> */}
                   {orders.length===0 && loading  ? (
-                    <HashLoader color="#DB551B" className="text-center" />
+                    <HashLoader color="#DB551B" className="text-center align-self-center my-3" />
                   ) : (
                     <MaterialReactTable
                       columns={columns}
@@ -138,18 +133,14 @@ const Order = () => {
                       paginationDisplayMode="pages"
                       defaultColumn={{
                         minSize: 20,
-                        maxSize: 100,
+                        maxSize: 150,
                         size: 180,
                       }}
                     />
                   )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                {/* </div> */}
+              </div></Layout>
+
   );
 };
 

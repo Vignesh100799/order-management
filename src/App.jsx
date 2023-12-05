@@ -10,14 +10,13 @@ import Admin from './core/Admin';
 import Listing from './core/Listing';
 import Order from './core/Order';
 import Settings from './core/Settings';
-
 import Community from './core/Community'
 import Tutorial from './core/Tutorial';
 import ViewOrder from './core/vendors/crud/ViewOrder';
 import EditOrder from './core/vendors/crud/EditOrder';
 import CreateOrder from './core/vendors/crud/CreateOrder';
 import { ToastContainer } from 'react-toastify';
-import { PrivateRoute} from './Components/User/ProtectedRoute';
+import { PrivateRoute} from './Components/User/Auth/ProtectedRoute';
 // import EventForm from './EventForm';
 
 
@@ -33,6 +32,8 @@ function App() {
     {/* <Route path='/event' element={<EventForm />} /> */}
     <Route path='/register' element={<Register />} />
     <Route path='/forgot-password' element={<ForgotPassword />} />
+
+    {/* protected route */}
     <Route element={<PrivateRoute />} >
     <Route path='/dashboard' element={<Dashboard  />} />
     <Route path='/admin' element={<Admin />} />

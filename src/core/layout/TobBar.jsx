@@ -6,7 +6,7 @@ import messageLogo3 from '../../assets/img/undraw_profile_3.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSideBarToggle,sideBarToggle } from '../../features/UserReducer'
 import { Link, useNavigate } from 'react-router-dom'
-import { logout } from '../User/authService'
+import { logout } from '../../Components/User/Auth/authService'
 import './styles/navbar.css'
 
 

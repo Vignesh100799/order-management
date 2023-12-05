@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Icons/Logo";
 import { useFormik } from "formik";
-import { isAuthenticated, login } from "./authService";
+import { isAuthenticated, login } from "./Auth/authService";
 import { loginValidationSchema } from "./schema/validationSchema";
 import { EyeFill } from "react-bootstrap-icons";
 

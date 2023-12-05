@@ -5,7 +5,7 @@ import Logo from "../Icons/Logo";
 import { useFormik } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { config } from "../config/config";
+import { config } from "../../config/config";
 const Register = () => {
   const formik = useFormik({
     initialValues: {
@@ -20,9 +20,7 @@ const Register = () => {
       try {
         const response = await axios.post(`${config.usersApi}/registered-users`,values)
         if(response.status===201){
-          toast.success('Registration Successfully done 😃!', {
-            position: 'top-center',
-          });
+          toast.success('Registration Successfully done 😃!');
         }
         formik.resetForm()
       } catch (error) {

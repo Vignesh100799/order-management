@@ -1,15 +1,9 @@
 import React from 'react'
-import Sidebar from '../Components/Navbar/Sidebar'
-import TobBar from '../Components/Navbar/TobBar'
+
+import Layout from './layout/Layout'
 const Settings = () => {
   return (
-    <div id="page-top">
-      <div id="wrapper">
-        <Sidebar />
-        <div id="content-wrapper" className="d-flex flex-column">
-          <div id="content">
-            <TobBar />
-            <div className="container-fluid">           
+<Layout>
               <div className="row justify-content-center">
                 <div className="col-6">
                 <div className="card shadow mb-4 ">
@@ -26,14 +20,8 @@ const Settings = () => {
                   </div>
                 </div>
 
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
+              </div></Layout>          
+            
   )
 }
 

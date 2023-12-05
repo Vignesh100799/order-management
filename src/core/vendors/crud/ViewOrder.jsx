@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Sidebar from "../../../Components/Navbar/Sidebar";
-import TobBar from "../../../Components/Navbar/TobBar";
+
 import { viewOrder } from "../../../features/UserReducer";
 import axios from "axios";
 import { config } from "../../../config/config";
+import Layout from "../../layout/Layout";
 
 const ViewOrder = () => {
   const params = useParams();
@@ -27,14 +27,7 @@ const ViewOrder = () => {
     getData();
   }, [dispatch, params.id]);
   return (
-    <div>
-      <div id="page-top">
-        <div id="wrapper">
-          <Sidebar />
-          <div id="content-wrapper" className="d-flex flex-column">
-            <div id="content">
-              <TobBar />
-              <div className="container-fluid">
+ <Layout >
                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
                   <h1 className="h3 mb-0 text-gray-800">Order </h1>
                 </div>
@@ -60,12 +53,7 @@ const ViewOrder = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              </Layout>
   );
 };
 

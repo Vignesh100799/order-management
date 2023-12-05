@@ -1,6 +1,4 @@
 import React, { useEffect, useMemo } from 'react'
-import Sidebar from '../Components/Navbar/Sidebar'
-import TobBar from '../Components/Navbar/TobBar'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteOrder, setLoading, setOrder } from '../features/UserReducer';
 import { HashLoader } from 'react-spinners';
@@ -10,10 +8,11 @@ import { MaterialReactTable } from 'material-react-table';
 import { mainTable } from './vendors/Table/mainTable';
 import axios from 'axios';
 import { config } from '../config/config';
+import Layout from './layout/Layout';
 
 
 const Admin = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
  
   const { orders, loading, error } = useSelector((state) => state.order_list);
   const handleDeleteOrder = async (orderId) => {
@@ -92,13 +91,9 @@ const Admin = () => {
 }, [loading, dispatch]);
 
   return (
-    <div id="page-top">
-      <div id="wrapper">
-        <Sidebar />
-        <div id="content-wrapper" className="d-flex flex-column">
-          <div id="content">
-            <TobBar />
-            <div className="container-fluid">
+  
+            <Layout>
+           
               <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">Orders</h1>
                 <Link
@@ -147,11 +142,9 @@ const Admin = () => {
                   )}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+           
+            </Layout>
+          
   );
 };
 
