@@ -22,13 +22,13 @@ const Pricing = () => {
   });
 
   return (
-    <section className="bg-light py-5 border-bottom">
+    <article className="bg-light py-5 border-bottom">
       <div className="container px-5 my-5">
-        <div className="text-center mb-5">
+        <hgroup className="text-center mb-5">
           <h2 className="fw-bolder">Pay as you grow</h2>
           <p className="lead mb-0">With our no hassle pricing plans</p>
-        </div>
-        <div className="row gx-5 justify-content-center">
+        </hgroup>
+        <section className="row gx-5 justify-content-center">
           {loading ? (
             <div className="h1 text-center">Loading...</div>
           ) : (
@@ -36,9 +36,9 @@ const Pricing = () => {
               return <PriceCard key={index} details={list} />;
             })
           )}
-        </div>
+        </section>
       </div>
-    </section>
+    </article>
   );
 };
 

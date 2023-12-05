@@ -23,7 +23,7 @@ const data = [
 
 export default function LineChartOD() {
   return (
-    <div style={{width:'100%'}}>
+    <section style={{width:'100%'}}>
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
         // width={500}
@@ -49,6 +49,6 @@ export default function LineChartOD() {
         />
       </LineChart>
       </ResponsiveContainer>
-    </div>
+    </section>
   );
 }

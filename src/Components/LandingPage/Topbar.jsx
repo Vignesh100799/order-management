@@ -5,8 +5,8 @@ import Logo from "../Icons/Logo";
 const Topbar = () => {
     
     return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-orange">
-      <div className="container px-0">
+    <main className="navbar navbar-expand-lg navbar-dark bg-orange">
+      <header className="container px-0">
         <span className="navbar-brand d-flex">
           <Logo width={60} height={60} className="me-3 fill-white" />
           <h1 className="h1">ADUDU</h1>
@@ -22,7 +22,7 @@ const Topbar = () => {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <nav className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="#!">
@@ -50,9 +50,9 @@ const Topbar = () => {
               </Link>
             </li>
           </ul>
-        </div>
-      </div>
-    </nav>
+        </nav>
+      </header>
+    </main>
   );
 };
 

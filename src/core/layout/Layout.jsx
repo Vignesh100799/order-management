@@ -1,23 +1,19 @@
-
-import React from 'react';
-import Sidebar from './Sidebar';
-import TobBar from './TobBar';
+import React from "react";
+import Sidebar from "./Sidebar";
+import TobBar from "./TobBar";
 
 const Layout = ({ children }) => (
-  <div id="page-top">
-    <div id="wrapper">
+  <main id="page-top">
+    <header id="wrapper">
       <Sidebar />
-      <div id="content-wrapper" className="d-flex flex-column">
-        <div id="content">
+      <article id="content-wrapper" className="d-flex flex-column">
+        <section id="content">
           <TobBar />
-          <div className="container-fluid">
-              
-          {children}
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
+          <div className="container-fluid">{children}</div>
+        </section>
+      </article>
+    </header>
+  </main>
 );
 
 export default Layout;

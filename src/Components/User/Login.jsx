@@ -6,10 +6,9 @@ import { isAuthenticated, login } from "./Auth/authService";
 import { loginValidationSchema } from "./schema/validationSchema";
 import { EyeFill } from "react-bootstrap-icons";
 
-
 const Login = () => {
-  const [showPassword,setShowPassword] = useState(false);
-  const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -19,16 +18,15 @@ const Login = () => {
     onSubmit: async (values, reset) => {
       try {
         await login(values.email, values.password);
-        console.log(values)
+        console.log(values);
         reset.resetForm();
-        navigate('/dashboard');
-        console.log('Navigation to /dashboard successful');
+        navigate("/dashboard");
+        console.log("Navigation to /dashboard successful");
       } catch (error) {
-        console.error('Login failed:', error.message);
-        formik.setErrors({ general: 'Invalid username or password' })
+        console.error("Login failed:", error.message);
+        formik.setErrors({ general: "Invalid username or password" });
       }
     },
-
   });
   React.useEffect(() => {
     if (isAuthenticated()) {
@@ -36,37 +34,43 @@ const Login = () => {
     }
   }, [navigate]);
   return (
-    <div className="kvnkjabvav vh-100">
-      <div className="container ">
-        <div className="row justify-content-center">
+    <main className="kvnkjabvav ">
+      <article className="container ">
+        <hgroup className="row justify-content-center">
           <div className="col-xl-10 col-lg-12 col-md-9">
-            <div className="card o-hidden border-0 shadow-lg my-5">
-              <div className="card-body p-0">
-                <div className="row">
-                  <div className="col-lg-6 d-none d-lg-block bg-login-image" />
-                  <div className="col-lg-6">
-                    <div className="p-5">
-                      <div className="d-flex justify-content-center user-heading">
+            <section className="card o-hidden border-0 shadow-lg my-5">
+              <main className="card-body p-0">
+                <section className="row">
+                  <figure className="col-lg-6 m-0 d-none d-lg-block bg-login-image">
 
-                        <Logo width={60} height={60} className='me-3 fill-orange' />
-                        <h1 className='text-center  h1'>
-                          ADUDU
-                        </h1>
-                      </div>
+                  </figure>
+                  <section className="col-lg-6 p-5">
+                    
+                      <hgroup className="d-flex justify-content-center user-heading">
+                        <Logo
+                          width={60}
+                          height={60}
+                          className="me-3 fill-orange"
+                        />
+                        <h1 className="text-center  h1">ADUDU</h1>
+                      </hgroup>
 
-                      <div className="text-center">
+                      <header className="text-center">
                         <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                      </div>
-                      <form className="user" onSubmit={formik.handleSubmit} >
+                      </header>
+                      <form className="user" onSubmit={formik.handleSubmit}>
                         {formik.errors.general && (
-                          <div className="alert alert-danger" role="alert">
+                          <section className="alert alert-danger" role="alert">
                             {formik.errors.general}
-                          </div>
+                          </section>
                         )}
-                        <div className="form-group">
+                        <section className="form-group">
                           <input
-                            className={`form-control form-control-user ${ formik.touched.email &&
-                            formik.errors.email ? 'is-invalid' : ''}`}
+                            className={`form-control form-control-user ${
+                              formik.touched.email && formik.errors.email
+                                ? "is-invalid"
+                                : ""
+                            }`}
                             id="email"
                             aria-describedby="emailHelp"
                             placeholder="Enter Email Address..."
@@ -75,19 +79,20 @@ const Login = () => {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                           />
-                          {
-                            formik.touched.email && formik.errors.email && (
-                              <span className="d-block ms-3 text-danger small invalid-feedback">{formik.errors.email}</span>
-                            )
-                          }
-                        </div>
-                        <div className="form-group">
+                          {formik.touched.email && formik.errors.email && (
+                            <span className="d-block ms-3 text-danger small invalid-feedback">
+                              {formik.errors.email}
+                            </span>
+                          )}
+                        </section>
+                        <section className="form-group">
                           <input
-                            type={
-                              showPassword? 'text' :'password'
-                            }
-                            className={`form-control form-control-user ${ formik.touched.password &&
-                            formik.errors.password ? 'is-invalid' : ''}`}
+                            type={showPassword ? "text" : "password"}
+                            className={`form-control form-control-user ${
+                              formik.touched.password && formik.errors.password
+                                ? "is-invalid"
+                                : ""
+                            }`}
                             id="password"
                             placeholder="Password"
                             name="password"
@@ -95,15 +100,19 @@ const Login = () => {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                           />
-                          <EyeFill className="text-end bg-dark" onClick={()=>setShowPassword(!showPassword)} />
-                          {
-                            formik.touched.password && formik.errors.password && (
-                              <span className="d-block ms-3 text-danger small invalid-feedback">{formik.errors.password}</span>
-                            )
-                          }
-                        </div>
-                        <div className="form-group">
-                          <div className="custom-control custom-checkbox small">
+                          <EyeFill
+                            className="text-end bg-dark"
+                            onClick={() => setShowPassword(!showPassword)}
+                          />
+                          {formik.touched.password &&
+                            formik.errors.password && (
+                              <span className="d-block ms-3 text-danger small invalid-feedback">
+                                {formik.errors.password}
+                              </span>
+                            )}
+                        </section>
+                        <section className="form-group">
+                          <section className="custom-control custom-checkbox small">
                             <input
                               type="checkbox"
                               className="custom-control-input"
@@ -115,19 +124,27 @@ const Login = () => {
                             >
                               Remember Me
                             </label>
-                          </div>
-                        </div>
+                          </section>
+                        </section>
                         <button
                           className="btn btn-primary btn-user btn-block"
                           type="submit"
                         >
                           Login
                         </button>
-                        <a href="..." className="btn btn-google btn-user btn-block">
-                          <i className="fab fa-google fa-fw"></i> Login with Google
+                        <a
+                          href="..."
+                          className="btn btn-google btn-user btn-block"
+                        >
+                          <i className="fab fa-google fa-fw"></i> Login with
+                          Google
                         </a>
-                        <a href="..." className="btn btn-facebook btn-user btn-block">
-                          <i className="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                        <a
+                          href="..."
+                          className="btn btn-facebook btn-user btn-block"
+                        >
+                          <i className="fab fa-facebook-f fa-fw"></i> Login with
+                          Facebook
                         </a>
                         <hr />
                       </form>
@@ -142,14 +159,15 @@ const Login = () => {
                           Create an Account!
                         </Link>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                   
+                  </section>
+                </section>
+              </main>
+            </section>
           </div>
-        </div>
-      </div></div>
+        </hgroup>
+      </article>
+    </main>
   );
 };
 

@@ -11,7 +11,7 @@ import TutoIcon from "../vendors/Icons/TutoIcon";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setSideBarToggle } from "../../features/UserReducer";
-import './styles/navbar.css'
+import "./styles/navbar.css";
 const Sidebar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -41,27 +41,25 @@ const Sidebar = () => {
     { path: "/listing", icon: <ListIcon />, text: "Listing" },
     { path: "/admin", icon: <AdminIcon />, text: "Admin" },
     { path: "/settings", icon: <SettingIcon />, text: "Setting" },
-  ];
-
-  const linkItems = [
     { path: "/community", icon: <CommunityIcon />, text: "Community" },
     { path: "/tutorial", icon: <TutoIcon />, text: "Support" },
   ];
+
   return (
-    <nav
+    <main
       className={sidebarClasses}
       id="accordionSidebar"
       style={{
         backgroundColor: "#F9FAFB",
       }}
     >
-      <div className="sidebar-brand d-flex align-items-center justify-content-around">
-        <div className="d-flex">
+      <hgroup className="sidebar-brand d-flex align-items-center justify-content-around">
+        <section className="d-flex">
           <div className="sidebar-brand-icon ">
             <Logo width={31.16} height={24} className="me-2 fill-orange" />
           </div>
-        </div>
-        <div className="sidebar-brand-icon text-center d-none d-md-block">
+        </section>
+        <section className="sidebar-brand-icon text-center d-none d-md-block">
           <button
             className="border-0 "
             style={{ background: "none" }}
@@ -69,34 +67,40 @@ const Sidebar = () => {
           >
             <BarIcon />
           </button>
-        </div>
-      </div>
-      <div></div>
-      <div>
-      <div className="mx-3">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-2" style={{ cursor: "pointer" }}>
-          {[...navItems, ...linkItems].map((item) => (
-            <li
-              key={item.path}
-              className={`nav-item m-0 p-0 bg-grey-h p-md-2 py-sm-3 ${location.pathname === item.path ? "bg-grey" : ""} ${sideBarToggle ? "" : "mt-4"}`}
-              
-            >
-              <Link to={item.path} className="nav-link p-0 w-100">
-                {item.icon}
-                <span className={`text-black ml-2 ${sideBarToggle ? "" : "d-none"}`}>
-                  {item.text}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+        </section>
+      </hgroup>
+     <hr className="bg-black m-0 mb-1" />
+     
+        <nav className="mx-3">
+          <ul
+            className="navbar-nav me-auto mb-2 mb-lg-2"
+            style={{ cursor: "pointer" }}
+          >
+            {navItems.map((item) => (
+              <li
+                key={item.path}
+                className={`nav-item m-0 p-0 bg-grey-h p-md-2 py-sm-3 ${
+                  location.pathname === item.path ? "bg-grey" : ""
+                } ${sideBarToggle ? "" : "mt-4"}`}
+              >
+                <Link to={item.path} className="nav-link p-0 w-100">
+                  {item.icon}
+                  <span
+                    className={`text-black ml-2 ${
+                      sideBarToggle ? "" : "d-none"
+                    }`}
+                  >
+                    {item.text}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        <div className="text-center d-none d-md-block">
-   
-        </div>
-      </div>
-    </nav>
+        <div className="text-center d-none d-md-block"></div>
+     
+    </main>
   );
 };
 

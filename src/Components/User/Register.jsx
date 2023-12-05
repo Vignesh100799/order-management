@@ -16,47 +16,51 @@ const Register = () => {
       cpassword: "",
     },
     validationSchema: registerValidationSchema,
-    onSubmit: async(values) => {
+    onSubmit: async (values) => {
       try {
-        const response = await axios.post(`${config.usersApi}/registered-users`,values)
-        if(response.status===201){
-          toast.success('Registration Successfully done 😃!');
+        const response = await axios.post(
+          `${config.usersApi}/registered-users`,
+          values
+        );
+        if (response.status === 201) {
+          toast.success("Registration Successfully done 😃!");
         }
-        formik.resetForm()
+        formik.resetForm();
       } catch (error) {
-        console.error('Error during registration:', error);
-        toast.error('Error during registration. Please try again.', {
-          position: 'top-center',
+        console.error("Error during registration:", error);
+        toast.error("Error during registration. Please try again.", {
+          position: "top-center",
         });
-        
       }
     },
   });
 
   return (
-    <div className="kvnkjabvav">
-    <div className="container ">
-      <div className="card o-hidden border-0 shadow-lg my-5">
-        <div className="card-body p-0">
-          {/* Nested Row within Card Body */}
-          <div className="row">
-            <div className="col-lg-5 d-none d-lg-block bg-register-image" />
-            <div className="col-lg-7">
-              <div className="p-5">
-                <div className="d-flex justify-content-center user-heading">
+    <article className="container ">
+      <section className="card o-hidden border-0 shadow-lg my-5">
+        <main className="card-body p-0">          
+          <section className="row">
+            <figure className="col-lg-5 d-none m-0 d-lg-block bg-register-image">
+            </figure>
+            <section className="col-lg-7 p-5">
+              
+                <hgroup className="d-flex justify-content-center user-heading">
                   <Logo width={60} height={60} className="me-3 fill-orange" />
                   <h1 className="text-center  h1">ADUDU</h1>
-                </div>
-                <div className="text-center">
+                </hgroup>
+                <header className="text-center">
                   <h1 className="h4 text-gray-900 mb-4">Create an Account!</h1>
-                </div>
+                </header>
                 <form className="user" onSubmit={formik.handleSubmit}>
-                  <div className="form-group row">
-                    <div className="col-sm-6 mb-3 mb-sm-0">
+                  <fieldset className="form-group row">
+                    <section className="col-sm-6 mb-3 mb-sm-0">
                       <input
                         type="text"
-                        className= {`form-control form-control-user ${ formik.touched.firstname && 
-                          formik.errors.firstname ? "is-invalid" : ''}`}
+                        className={`form-control form-control-user ${
+                          formik.touched.firstname && formik.errors.firstname
+                            ? "is-invalid"
+                            : ""
+                        }`}
                         id="firstname"
                         placeholder="First Name"
                         name="firstname"
@@ -64,19 +68,20 @@ const Register = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       />
-                      {
-                        formik.touched.firstname && formik.errors.firstname && (
-                          <span className="d-block ms-3 text-danger small invalid-feedback">
-                        {formik.errors.firstname}
-                      </span>
-                        )
-                      }
-                    </div>
-                    <div className="col-sm-6 mb-3 mb-sm-0">
+                      {formik.touched.firstname && formik.errors.firstname && (
+                        <span className="d-block ms-3 text-danger small invalid-feedback">
+                          {formik.errors.firstname}
+                        </span>
+                      )}
+                    </section>
+                    <section className="col-sm-6 mb-3 mb-sm-0">
                       <input
                         type="text"
-                        className= {`form-control form-control-user ${ formik.touched.lastname && 
-                          formik.errors.lastname ? "is-invalid" : ''}`}
+                        className={`form-control form-control-user ${
+                          formik.touched.lastname && formik.errors.lastname
+                            ? "is-invalid"
+                            : ""
+                        }`}
                         id="lastname"
                         placeholder="Last Name"
                         name="lastname"
@@ -84,41 +89,43 @@ const Register = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       />
-                      {
-                        formik.touched.lastname && formik.errors.lastname && (
-                          <span className="d-block ms-3 text-danger small invalid-feedback">
-                        {formik.errors.lastname}
-                      </span>
-                        )
-                      }
-                    </div>
-                  </div>
-                  <div className="form-group">
-                  <input
-                        type="text"
-                        className= {`form-control form-control-user ${ formik.touched.email && 
-                          formik.errors.email ? "is-invalid" : ''}`}
-                        id="email"
-                        placeholder="E-mail"
-                        name="email"
-                        value={formik.values.email}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                      />
-                      {
-                        formik.touched.email && formik.errors.email && (
-                          <span className="d-block ms-3 text-danger small invalid-feedback">
+                      {formik.touched.lastname && formik.errors.lastname && (
+                        <span className="d-block ms-3 text-danger small invalid-feedback">
+                          {formik.errors.lastname}
+                        </span>
+                      )}
+                    </section>
+                  </fieldset>
+                  <section className="form-group">
+                    <input
+                      type="text"
+                      className={`form-control form-control-user ${
+                        formik.touched.email && formik.errors.email
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                      id="email"
+                      placeholder="E-mail"
+                      name="email"
+                      value={formik.values.email}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                    {formik.touched.email && formik.errors.email && (
+                      <span className="d-block ms-3 text-danger small invalid-feedback">
                         {formik.errors.email}
                       </span>
-                        )
-                      }
-                  </div>
-                  <div className="form-group row">
-                    <div className="col-sm-6 mb-3 mb-sm-0">
+                    )}
+                  </section>
+                  <section className="form-group row">
+                    <section className="col-sm-6 mb-3 mb-sm-0">
                       <input
                         type="password"
-                        className= {`form-control form-control-user ${ formik.touched.password && 
-                          formik.errors.password ? "is-invalid" : ''}`}
+                        className={`form-control form-control-user ${
+                          formik.touched.password && formik.errors.password
+                            ? "is-invalid"
+                            : ""
+                        }`}
                         id="password"
                         placeholder="Last Name"
                         name="password"
@@ -126,19 +133,20 @@ const Register = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       />
-                      {
-                        formik.touched.password && formik.errors.password && (
-                          <span className="d-block ms-3 text-danger small invalid-feedback">
-                        {formik.errors.password}
-                      </span>
-                        )
-                      }
-                    </div>
-                    <div className="col-sm-6">
-                    <input
+                      {formik.touched.password && formik.errors.password && (
+                        <span className="d-block ms-3 text-danger small invalid-feedback">
+                          {formik.errors.password}
+                        </span>
+                      )}
+                    </section>
+                    <section className="col-sm-6">
+                      <input
                         type="password"
-                        className= {`form-control form-control-user ${ formik.touched.cpassword && 
-                          formik.errors.cpassword ? "is-invalid" : ''}`}
+                        className={`form-control form-control-user ${
+                          formik.touched.cpassword && formik.errors.cpassword
+                            ? "is-invalid"
+                            : ""
+                        }`}
                         id="cpassword"
                         placeholder="Last Name"
                         name="cpassword"
@@ -146,15 +154,13 @@ const Register = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       />
-                      {
-                        formik.touched.cpassword && formik.errors.cpassword && (
-                          <span className="d-block ms-3 text-danger small invalid-feedback">
-                        {formik.errors.cpassword}
-                      </span>
-                        )
-                      }
-                    </div>
-                  </div>
+                      {formik.touched.cpassword && formik.errors.cpassword && (
+                        <span className="d-block ms-3 text-danger small invalid-feedback">
+                          {formik.errors.cpassword}
+                        </span>
+                      )}
+                    </section>
+                  </section>
                   <button
                     className="btn btn-primary btn-user btn-block"
                     type="submit"
@@ -162,11 +168,12 @@ const Register = () => {
                     Register Account
                   </button>
                   <a href="..." className="btn btn-google btn-user btn-block">
-                                    <i className="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="..." className="btn btn-facebook btn-user btn-block">
-                                    <i className="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
+                    <i className="fab fa-google fa-fw"></i> Register with Google
+                  </a>
+                  <a href="..." className="btn btn-facebook btn-user btn-block">
+                    <i className="fab fa-facebook-f fa-fw"></i> Register with
+                    Facebook
+                  </a>
                   <hr />
                 </form>
                 <hr />
@@ -180,13 +187,12 @@ const Register = () => {
                     Already have an account? Login!
                   </Link>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+              
+            </section>
+          </section>
+        </main>
+      </section>
+    </article>
   );
 };
 

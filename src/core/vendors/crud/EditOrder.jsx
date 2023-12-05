@@ -15,7 +15,7 @@ const EditOrder = () => {
   const navigate = useNavigate();
   const params = useParams();
   // const setOrder = useSelector((state) => state.order_list);
-  
+
   const formik = useFormik({
     initialValues: {
       orderId: "",
@@ -29,14 +29,15 @@ const EditOrder = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        const updatedData = await axios.put(`${config.ordersApi}/orders/${params.id}`,
-      values)
-      dispatch(editOrder(updatedData.data))
-      navigate('/admin')
+        const updatedData = await axios.put(
+          `${config.ordersApi}/orders/${params.id}`,
+          values
+        );
+        dispatch(editOrder(updatedData.data));
+        navigate("/admin");
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-      
     },
   });
   useEffect(() => {
@@ -46,7 +47,9 @@ const EditOrder = () => {
           console.error("Error in edit order 45");
           return;
         }
-        const dataList = await axios.get(`${config.ordersApi}/orders/${params.id}`);
+        const dataList = await axios.get(
+          `${config.ordersApi}/orders/${params.id}`
+        );
         dispatch(editOrder({ id: dataList.data.id, ...dataList.data }));
         formik.setValues(dataList.data);
       } catch (error) {
@@ -54,28 +57,22 @@ const EditOrder = () => {
       }
     };
     getData();
-  
-  }, [params.id,dispatch]);
-  
+  }, [params.id, dispatch]);
 
   return (
     <Layout>
-              <div className="d-sm-flex align-items-center justify-content-between mb-4 mx-lg-5">
-                <h1 className="h3 mb-0 text-gray-800">Orders</h1>
-                <Link
-                  to={"/order"}
-                  className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                >
-                  <i className="fas fa-download fa-sm text-white-50" />
-                  Back To Oder
-                </Link>
-              </div>
-              <OrderForm
-                formik={formik}
-                title="Edit Order"
-                buttonText="Update"
-              />
-           </Layout>
+      <hgroup className="d-sm-flex align-items-center justify-content-between mb-4 mx-lg-5">
+        <h1 className="h3 mb-0 text-gray-800">Orders</h1>
+        <Link
+          to={"/order"}
+          className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+        >
+          <i className="fas fa-download fa-sm text-white-50" />
+          Back To Oder
+        </Link>
+      </hgroup>
+      <OrderForm formik={formik} title="Edit Order" buttonText="Update" />
+    </Layout>
   );
 };
 

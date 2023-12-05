@@ -28,10 +28,6 @@ export const mainTable = [
       header: 'Customer Name',
     },
     {
-      accessorKey: 'shippingService',
-      header: 'Service',
-    },
-    {
       accessorKey: 'trackingCode',
       header: 'Tracking Code',
     },

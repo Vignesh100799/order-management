@@ -36,19 +36,19 @@ const ContactUs = () => {
     }
   });
   return (
-    <section className="bg-light py-5">
-      <div className="container px-5 my-5 px-5">
-        <div className="text-center mb-5">
+    <article className="bg-light py-5">
+      <section className="container px-5 my-5 px-5">
+        <hgroup className="text-center mb-5">
           <div className="feature bg-success bg-gradient text-white rounded-3 mb-3">
             <i className="bi bi-envelope" />
           </div>
           <h2 className="fw-bolder">Get in touch</h2>
           <p className="lead mb-0">We'd love to hear from you</p>
-        </div>
-        <div className="row gx-5 justify-content-center">
+        </hgroup>
+        <main className="row gx-5 justify-content-center">
           <div className="col-lg-6">
             <form onSubmit={formik.handleSubmit}>
-              <div className="form-floating mb-3">
+              <section className="form-floating mb-3">
                 <input
                   className="form-control"
                   id="customerName"
@@ -66,9 +66,9 @@ const ContactUs = () => {
                 >
                   {formik.errors.customerName}
                 </div>
-              </div>
+              </section>
 
-              <div className="form-floating mb-3">
+              <section className="form-floating mb-3">
                 <input
                   className="form-control"
                   id="email"
@@ -84,9 +84,9 @@ const ContactUs = () => {
                 >
                   {formik.errors.email}
                 </div>
-              </div>
+              </section>
 
-              <div className="form-floating mb-3">
+              <section className="form-floating mb-3">
                 <input
                   className="form-control"
                   id="phoneNo"
@@ -102,9 +102,9 @@ const ContactUs = () => {
                 >
                   {formik.errors.phoneNo}
                 </div>
-              </div>
+              </section>
 
-              <div className="form-floating mb-3">
+              <section className="form-floating mb-3">
                 <textarea
                   className="form-control"
                   id="message"
@@ -123,7 +123,7 @@ const ContactUs = () => {
                 >
                   {formik.errors.message}
                 </div>
-              </div>
+              </section>
 
               <div className="d-grid">
                 <button
@@ -138,9 +138,9 @@ const ContactUs = () => {
               </div>
             </form>
           </div>
-        </div>
-      </div>
-    </section>
+        </main>
+      </section>
+    </article>
   );
 };
 
