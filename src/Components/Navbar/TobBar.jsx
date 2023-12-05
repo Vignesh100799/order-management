@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import profileLogo from '../../assets/img/undraw_profile.svg'
 import messageLogo1 from '../../assets/img/undraw_profile_1.svg'
 import messageLogo2 from '../../assets/img/undraw_profile_2.svg'
 import messageLogo3 from '../../assets/img/undraw_profile_3.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSideBarToggle,sideBarToggle } from '../../features/UserReducer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../User/authService'
-
+import './styles/navbar.css'
 
 
 
@@ -15,17 +15,23 @@ const TobBar = () => {
   const dispatch = useDispatch();
 
 const sidebarToggle = useSelector((state)=>state.order_list.sideBarToggle)
-
 const handleSidebar = () => {
- 
   dispatch(setSideBarToggle(!sideBarToggle));
 };
 
 const removeSidebar = () => {
-
   dispatch(setSideBarToggle(sideBarToggle));
 };
 
+const navigate = useNavigate();
+
+const handleLogout = () => {
+  console.log('Logging out...');
+    logout();
+    console.log('Logged out.');
+    navigate('/login');
+
+};
 
 
 
@@ -54,7 +60,7 @@ const removeSidebar = () => {
     
     {/* Nav Item - Alerts */}
     <li className="nav-item dropdown no-arrow mx-1">
-    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a className="nav-link dropdown-toggle" href="..." role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i className="fas fa-bell fa-fw" />
         {/* Counter - Alerts */}
         <span className="badge badge-danger badge-counter px-2">3</span>
@@ -64,7 +70,7 @@ const removeSidebar = () => {
         <h6 className="dropdown-header bg-orange border-0">
           Alerts Center
         </h6>
-        <a className="dropdown-item d-flex align-items-center" href="#">
+        <a className="dropdown-item d-flex align-items-center" href="...">
           <div className="mr-3">
             <div className="icon-circle bg-primary">
               <i className="fas fa-file-alt text-white" />
@@ -75,7 +81,7 @@ const removeSidebar = () => {
             <span className="font-weight-bold">A new monthly report is ready to download!</span>
           </div>
         </a>
-        <a className="dropdown-item d-flex align-items-center" href="#">
+        <a className="dropdown-item d-flex align-items-center" href="...">
           <div className="mr-3">
             <div className="icon-circle bg-success">
               <i className="fas fa-donate text-white" />
@@ -86,7 +92,7 @@ const removeSidebar = () => {
             $290.29 has been deposited into your account!
           </div>
         </a>
-        <a className="dropdown-item d-flex align-items-center" href="#">
+        <a className="dropdown-item d-flex align-items-center" href="...">
           <div className="mr-3">
             <div className="icon-circle bg-warning">
               <i className="fas fa-exclamation-triangle text-white" />
@@ -97,12 +103,12 @@ const removeSidebar = () => {
             Spending Alert: We've noticed unusually high spending for your account.
           </div>
         </a>
-        <a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+        <a className="dropdown-item text-center small text-gray-500" href="...">Show All Alerts</a>
       </div>
     </li>
     {/* Nav Item - Messages */}
     <li className="nav-item dropdown no-arrow mx-1">
-    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">        
+    <a className="nav-link dropdown-toggle" href="..." role="button" data-bs-toggle="dropdown" aria-expanded="false">        
     <i className="fas fa-envelope fa-fw" />
         {/* Counter - Messages */}
         <span className="badge badge-danger badge-counter">7</span>
@@ -112,7 +118,7 @@ const removeSidebar = () => {
         <h6 className="dropdown-header bg-orange border-0">
           Message Center
         </h6>
-        <a className="dropdown-item d-flex align-items-center" href="#">
+        <a className="dropdown-item d-flex align-items-center" href="...">
           <div className="dropdown-list-image mr-3">
             <img className="rounded-circle" src={messageLogo1} alt="..." />
             <div className="status-indicator bg-success" />
@@ -123,7 +129,7 @@ const removeSidebar = () => {
             <div className="small text-gray-500">Emily Fowler · 58m</div>
           </div>
         </a>
-        <a className="dropdown-item d-flex align-items-center" href="#">
+        <a className="dropdown-item d-flex align-items-center" href="...">
           <div className="dropdown-list-image mr-3">
             <img className="rounded-circle" src={messageLogo2} alt="..." />
             <div className="status-indicator" />
@@ -134,7 +140,7 @@ const removeSidebar = () => {
             <div className="small text-gray-500">Jae Chun · 1d</div>
           </div>
         </a>
-        <a className="dropdown-item d-flex align-items-center" href="#">
+        <a className="dropdown-item d-flex align-items-center" href="...">
           <div className="dropdown-list-image mr-3">
             <img className="rounded-circle" src={messageLogo3} alt="..." />
             <div className="status-indicator bg-warning" />
@@ -145,7 +151,7 @@ const removeSidebar = () => {
             <div className="small text-gray-500">Morgan Alvarez · 2d</div>
           </div>
         </a>
-        <a className="dropdown-item d-flex align-items-center" href="#">
+        <a className="dropdown-item d-flex align-items-center" href="...">
           <div className="dropdown-list-image mr-3">
             <img className="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="..." />
             <div className="status-indicator bg-success" />
@@ -156,32 +162,25 @@ const removeSidebar = () => {
             <div className="small text-gray-500">Chicken the Dog · 2w</div>
           </div>
         </a>
-        <a className="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+        <a className="dropdown-item text-center small text-gray-500" href="...">Read More Messages</a>
       </div>
     </li>
     <div className="topbar-divider d-none d-sm-block" ></div>
     {/* Nav Item - User Information */}
     <li className="nav-item dropdown no-arrow">
-    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a className="nav-link dropdown-toggle" href="..." role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <span className="mr-2 d-none d-lg-inline text-gray-600 small">Naveen Karmegam</span>
-        <img className="img-profile rounded-circle" src={profileLogo} />
+        <img className="img-profile rounded-circle" src={profileLogo} alt='profile' />
       </a>
       {/* Dropdown - User Information */}
       <div className="dropdown-menu dropdown-menu-end me-2 shadow animated--grow-in " aria-labelledby="userDropdown">
-        <a className="dropdown-item" href="#">
+        <Link className="dropdown-item" to={'/settings'}>
           <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
           Profile
-        </a>
-        <a className="dropdown-item" href="#">
-          <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
-          Settings
-        </a>
-        <a className="dropdown-item" href="#">
-          <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400" />
-          Activity Log
-        </a>
+        </Link>
+        
         <div className="dropdown-divider" />
-        <Link className="dropdown-item" onClick={logout} >
+        <Link className="dropdown-item" onClick={handleLogout} >
           <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
           Logout
         </Link>

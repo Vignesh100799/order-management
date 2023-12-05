@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
 import Login from './Components/User/Login';
 import ForgotPassword from './Components/User/ForgotPassword';
@@ -17,13 +17,14 @@ import ViewOrder from './core/vendors/crud/ViewOrder';
 import EditOrder from './core/vendors/crud/EditOrder';
 import CreateOrder from './core/vendors/crud/CreateOrder';
 import { ToastContainer } from 'react-toastify';
+import { PrivateRoute} from './Components/User/ProtectedRoute';
 // import EventForm from './EventForm';
 
 
 function App() {
   return (
     <div className='conatianer-fluid'>
-    <BrowserRouter>
+    <Router>
    
    <Routes>
     
@@ -32,7 +33,8 @@ function App() {
     {/* <Route path='/event' element={<EventForm />} /> */}
     <Route path='/register' element={<Register />} />
     <Route path='/forgot-password' element={<ForgotPassword />} />
-    <Route path='/dashboard' element={<Dashboard />} />
+    <Route element={<PrivateRoute />} >
+    <Route path='/dashboard' element={<Dashboard  />} />
     <Route path='/admin' element={<Admin />} />
     <Route path='/listing' element={<Listing />} />
     <Route path='/order' element={<Order />} />
@@ -41,11 +43,11 @@ function App() {
     <Route path='/tutorial' element={<Tutorial />} />
     <Route path='/create-order' element={<CreateOrder />} />
     <Route path='/view-order/:id' element={<ViewOrder />} />
-    <Route path='/edit-order/:id' element={<EditOrder />} />
+    <Route path='/edit-order/:id' element={<EditOrder />} /></Route>
    </Routes>
 <ToastContainer />
     
-</BrowserRouter>
+</Router>
   </div>
 
   );

@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../icons/Logo";
+import Logo from "../Icons/Logo";
 import { useFormik } from "formik";
-import { login } from "./authService";
+import { isAuthenticated, login } from "./authService";
 import { loginValidationSchema } from "./schema/validationSchema";
+import { EyeFill } from "react-bootstrap-icons";
 
 
 const Login = () => {
-
+  const [showPassword,setShowPassword] = useState(false);
   const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
@@ -21,6 +22,7 @@ const Login = () => {
         console.log(values)
         reset.resetForm();
         navigate('/dashboard');
+        console.log('Navigation to /dashboard successful');
       } catch (error) {
         console.error('Login failed:', error.message);
         formik.setErrors({ general: 'Invalid username or password' })
@@ -28,6 +30,11 @@ const Login = () => {
     },
 
   });
+  React.useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
   return (
     <div className="kvnkjabvav vh-100">
       <div className="container ">
@@ -76,7 +83,9 @@ const Login = () => {
                         </div>
                         <div className="form-group">
                           <input
-                            type="password"
+                            type={
+                              showPassword? 'text' :'password'
+                            }
                             className={`form-control form-control-user ${ formik.touched.password &&
                             formik.errors.password ? 'is-invalid' : ''}`}
                             id="password"
@@ -86,6 +95,7 @@ const Login = () => {
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                           />
+                          <EyeFill className="text-end bg-dark" onClick={()=>setShowPassword(!showPassword)} />
                           {
                             formik.touched.password && formik.errors.password && (
                               <span className="d-block ms-3 text-danger small invalid-feedback">{formik.errors.password}</span>

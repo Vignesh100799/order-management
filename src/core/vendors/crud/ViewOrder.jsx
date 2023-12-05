@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Sidebar from "../../../Components/Navbar/Sidebar";
 import TobBar from "../../../Components/Navbar/TobBar";
-import { setOrder, viewOrder } from "../../../features/UserReducer";
+import { viewOrder } from "../../../features/UserReducer";
 import axios from "axios";
 import { config } from "../../../config/config";
 

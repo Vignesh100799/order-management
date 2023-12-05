@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../icons/Logo";
+import Logo from "../Icons/Logo";
 import { useFormik } from "formik";
 
 const ForgotPassword = () => {

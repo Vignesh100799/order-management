@@ -1,10 +1,10 @@
 import React, { useEffect} from "react";
 import Sidebar from "../Components/Navbar/Sidebar";
 import TobBar from "../Components/Navbar/TobBar";
-import LineChartOD from "./vendors/charts/LineChart";
+import LineChartOD from "./vendors/utils/LineChart";
 import ReportCard from "./vendors/others/ReportCard";
 import './vendors/style/core.css'
-import PieChartOD from "./vendors/charts/PieChart";
+import PieChartOD from "./vendors/utils/PieChart";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setLoading, setOrder } from "../features/UserReducer";
@@ -12,6 +12,7 @@ import { config } from "../config/config";
 
 
 const Dashboard = () => {
+  
   const { orders,loading} = useSelector((state) => state.order_list);
   const dash = [
     {

@@ -1,8 +1,8 @@
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { editOrder, setOrder } from "../../../features/UserReducer";
+import { editOrder } from "../../../features/UserReducer";
 import { validationSchema } from "./Schema/validationSchema";
 import TobBar from "../../../Components/Navbar/TobBar";
 import Sidebar from "../../../Components/Navbar/Sidebar";
@@ -54,7 +54,7 @@ const EditOrder = () => {
     };
     getData();
   
-  }, []);
+  }, [params.id,dispatch]);
   
 
   return (
