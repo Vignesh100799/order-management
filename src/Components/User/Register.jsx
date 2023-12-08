@@ -1,10 +1,13 @@
+import { registerValidationSchema } from "./schema/validationSchema";
 import React from "react";
-import { Link } from "react-router-dom";
-import Logo from "../icons/Logo";
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../Icons/Logo";
 import { useFormik } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { config } from "../../config/config";
 const Register = () => {
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       firstname: "",
@@ -13,148 +16,153 @@ const Register = () => {
       password: "",
       cpassword: "",
     },
-    validate: (values) => {
-      let errors = {};
-
-      if (values.firstname === "") {
-        errors.firstname = "* Required";
-      }
-      if (values.lastname === "") {
-        errors.lastname = "* Required";
-      }
-      if (values.email === "") {
-        errors.email = "* Required";
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-      ) {
-        errors.email = "Invalid email address";
-      }
-      if (values.password === "") {
-        errors.password = "* Required";
-      } else if (values.password.length < 3 || values.password.length >= 15) {
-        errors.password = "password should be min 3 and max 8 characters";
-      } else if (!/^[a-zA-Z0-9!@#$%^&*]{6,16}$/i.test(values.password)) {
-        errors.password = "password must contain atlest one special characters";
-      }
-      if (values.cpassword === "") {
-        errors.cpassword = "* Required";
-      } else if (values.cpassword !== values.password) {
-        errors.cpassword = "password fleid doesn't match";
-      }
-
-      return errors;
-    },
-    onSubmit: async(values) => {
+    validationSchema: registerValidationSchema,
+    onSubmit: async (values) => {
       try {
-        const response = await axios.post('https://65615e6adcd355c08323c948.mockapi.io/registered-users',values)
-        if(response.status===201){
-          toast.success('Registration Successfully done 😃!', {
-            position: 'top-center',
-          });
+        const response = await axios.post(
+          `${config.usersApi}/registered-users`,
+          values
+        );
+        if (response.status === 201) {
+          toast.success("Registration Successfully done 😃!");
         }
-        formik.resetForm()
+        navigate('/login')
+        formik.resetForm();
       } catch (error) {
-        console.error('Error during registration:', error);
-        toast.error('Error during registration. Please try again.', {
-          position: 'top-center',
+        console.error("Error during registration:", error);
+        toast.error("Error during registration. Please try again.", {
+          position: "top-center",
         });
-        
       }
     },
   });
 
   return (
-    <div className="kvnkjabvav">
-    <div className="container ">
-      <div className="card o-hidden border-0 shadow-lg my-5">
-        <div className="card-body p-0">
-          {/* Nested Row within Card Body */}
-          <div className="row">
-            <div className="col-lg-5 d-none d-lg-block bg-register-image" />
-            <div className="col-lg-7">
-              <div className="p-5">
-                <div className="d-flex justify-content-center user-heading">
+    <article className="container ">
+      <section className="card o-hidden border-0 shadow-lg my-5">
+        <main className="card-body p-0">          
+          <section className="row">
+            <figure className="col-lg-5 d-none m-0 d-lg-block bg-register-image">
+            </figure>
+            <section className="col-lg-7 p-5">
+              
+                <hgroup className="d-flex justify-content-center user-heading">
                   <Logo width={60} height={60} className="me-3 fill-orange" />
                   <h1 className="text-center  h1">ADUDU</h1>
-                </div>
-                <div className="text-center">
+                </hgroup>
+                <header className="text-center">
                   <h1 className="h4 text-gray-900 mb-4">Create an Account!</h1>
-                </div>
+                </header>
                 <form className="user" onSubmit={formik.handleSubmit}>
-                  <div className="form-group row">
-                    <div className="col-sm-6 mb-3 mb-sm-0">
+                  <fieldset className="form-group row">
+                    <section className="col-sm-6 mb-3 mb-sm-0">
                       <input
                         type="text"
-                        className="form-control form-control-user"
-                        id="exampleFirstName"
+                        className={`form-control form-control-user ${
+                          formik.touched.firstname && formik.errors.firstname
+                            ? "is-invalid"
+                            : ""
+                        }`}
+                        id="firstname"
                         placeholder="First Name"
                         name="firstname"
                         value={formik.values.firstname}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
-                      <span className="d-block ms-3 text-danger small">
-                        {formik.errors.firstname}
-                      </span>
-                    </div>
-                    <div className="col-sm-6">
+                      {formik.touched.firstname && formik.errors.firstname && (
+                        <span className="d-block ms-3 text-danger small invalid-feedback">
+                          {formik.errors.firstname}
+                        </span>
+                      )}
+                    </section>
+                    <section className="col-sm-6 mb-3 mb-sm-0">
                       <input
                         type="text"
-                        className="form-control form-control-user"
-                        id="exampleLastName"
+                        className={`form-control form-control-user ${
+                          formik.touched.lastname && formik.errors.lastname
+                            ? "is-invalid"
+                            : ""
+                        }`}
+                        id="lastname"
                         placeholder="Last Name"
                         name="lastname"
                         value={formik.values.lastname}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
-                      <span className="d-block ms-3 text-danger small">
-                        {formik.errors.lastname}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="form-group">
+                      {formik.touched.lastname && formik.errors.lastname && (
+                        <span className="d-block ms-3 text-danger small invalid-feedback">
+                          {formik.errors.lastname}
+                        </span>
+                      )}
+                    </section>
+                  </fieldset>
+                  <section className="form-group">
                     <input
                       type="text"
-                      className="form-control form-control-user"
-                      id="exampleInputEmail"
-                      placeholder="Email Address"
+                      className={`form-control form-control-user ${
+                        formik.touched.email && formik.errors.email
+                          ? "is-invalid"
+                          : ""
+                      }`}
+                      id="email"
+                      placeholder="E-mail"
                       name="email"
                       value={formik.values.email}
                       onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
                     />
-                    <span className="d-block ms-3 text-danger small">
-                      {formik.errors.email}
-                    </span>
-                  </div>
-                  <div className="form-group row">
-                    <div className="col-sm-6 mb-3 mb-sm-0">
+                    {formik.touched.email && formik.errors.email && (
+                      <span className="d-block ms-3 text-danger small invalid-feedback">
+                        {formik.errors.email}
+                      </span>
+                    )}
+                  </section>
+                  <section className="form-group row">
+                    <section className="col-sm-6 mb-3 mb-sm-0">
                       <input
                         type="password"
-                        className="form-control form-control-user"
-                        id="exampleInputPassword"
-                        placeholder="Password"
+                        className={`form-control form-control-user ${
+                          formik.touched.password && formik.errors.password
+                            ? "is-invalid"
+                            : ""
+                        }`}
+                        id="password"
+                        placeholder="password"
                         name="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
-                      <span className="d-block ms-3 text-danger small">
-                        {formik.errors.password}
-                      </span>
-                    </div>
-                    <div className="col-sm-6">
+                      {formik.touched.password && formik.errors.password && (
+                        <span className="d-block ms-3 text-danger small invalid-feedback">
+                          {formik.errors.password}
+                        </span>
+                      )}
+                    </section>
+                    <section className="col-sm-6">
                       <input
                         type="password"
-                        className="form-control form-control-user"
-                        id="exampleRepeatPassword"
-                        placeholder="Repeat Password"
+                        className={`form-control form-control-user ${
+                          formik.touched.cpassword && formik.errors.cpassword
+                            ? "is-invalid"
+                            : ""
+                        }`}
+                        id="cpassword"
+                        placeholder="confirm password"
                         name="cpassword"
                         value={formik.values.cpassword}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                       />
-                      <span className="d-block ms-3 text-danger small">
-                        {formik.errors.cpassword}
-                      </span>
-                    </div>
-                  </div>
+                      {formik.touched.cpassword && formik.errors.cpassword && (
+                        <span className="d-block ms-3 text-danger small invalid-feedback">
+                          {formik.errors.cpassword}
+                        </span>
+                      )}
+                    </section>
+                  </section>
                   <button
                     className="btn btn-primary btn-user btn-block"
                     type="submit"
@@ -162,11 +170,12 @@ const Register = () => {
                     Register Account
                   </button>
                   <a href="..." className="btn btn-google btn-user btn-block">
-                                    <i className="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="..." className="btn btn-facebook btn-user btn-block">
-                                    <i className="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
+                    <i className="fab fa-google fa-fw"></i> Register with Google
+                  </a>
+                  <a href="..." className="btn btn-facebook btn-user btn-block">
+                    <i className="fab fa-facebook-f fa-fw"></i> Register with
+                    Facebook
+                  </a>
                   <hr />
                 </form>
                 <hr />
@@ -180,13 +189,12 @@ const Register = () => {
                     Already have an account? Login!
                   </Link>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+              
+            </section>
+          </section>
+        </main>
+      </section>
+    </article>
   );
 };
 

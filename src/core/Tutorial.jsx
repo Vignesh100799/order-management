@@ -1,21 +1,11 @@
 import React from 'react'
-import Sidebar from '../Components/Navbar/Sidebar'
-import TobBar from '../Components/Navbar/TobBar'
+
+import Layout from './layout/Layout'
 const Tutorial = () => {
   return (
-<div id="page-top">
-        <div id="wrapper">
-        <Sidebar />
-        <div id="content-wrapper" className="d-flex flex-column">
-          <div id="content">
-            <TobBar />
+    <Layout>
 
-            
-          </div>
-        </div>
-         
-    </div>
-    </div>
+    </Layout>
   )
 }
 

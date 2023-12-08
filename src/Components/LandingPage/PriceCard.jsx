@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 
 const PriceCard = ({ details }) => {
   return (
-    <div className="col-lg-6 col-xl-4">
-      <div className="card mb-5 mb-xl-0">
-        <div className="card-body p-5">
+    <article className="col-lg-6 col-xl-4">
+      <section className="card mb-5 mb-xl-0">
+        <main className="card-body p-5">
           <div className="small text-uppercase fw-bold text-muted">
             {details.title}
           </div>
@@ -19,7 +19,7 @@ const PriceCard = ({ details }) => {
           <ul className="list-unstyled mb-4">
             {details.features.map((list, index) => {
               return (
-                <li className="mb-3">
+                <li className="mb-3" key={index}>
                   <i
                     className={`bi ${
                       list.value ? "bi-check text-primary" : "bi-x text-muted"
@@ -37,9 +37,9 @@ const PriceCard = ({ details }) => {
               Choose plan
             </Link>
           </div>
-        </div>
-      </div>
-    </div>
+        </main>
+      </section>
+    </article>
   );
 };
 

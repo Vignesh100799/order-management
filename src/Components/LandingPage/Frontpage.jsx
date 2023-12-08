@@ -9,15 +9,15 @@ import Footer from './Footer'
 import '../../assets/css/Frontpage.css'
 const Frontpage = () => {
   return (
-   <div>
-   <Topbar />
-   <Header />
-   <Feature />
-   <Pricing />
-   <Testimonials />
-   <ContactUs />
-   <Footer />
-   </div>
+    <div className='container-fulid'>
+      <Topbar />
+      <Header />
+      <Feature />
+      <Pricing />
+      <Testimonials />
+      <ContactUs />
+      <Footer />
+    </div>
   )
 }
 

@@ -2,10 +2,10 @@ import React from 'react'
 
 const Feature = () => {
   return (
-    <section className="py-5 border-bottom" id="features">
-  <div className="container px-5 my-5">
+    <main className="py-5 border-bottom" id="features">
+  <article className="container px-5 my-5">
     <div className="row gx-5">
-      <div className="col-lg-4 mb-5 mb-lg-0">
+      <section className="col-lg-4 mb-5 mb-lg-0">
         <div className="feature bg-success bg-gradient text-white rounded-3 mb-3"><i className="bi bi-collection" /></div>
         <h2 className="h4 fw-bolder">Featured title</h2>
         <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
@@ -13,8 +13,8 @@ const Feature = () => {
           Call to action
           <i className="bi bi-arrow-right" />
         </a>
-      </div>
-      <div className="col-lg-4 mb-5 mb-lg-0">
+      </section>
+      <section className="col-lg-4 mb-5 mb-lg-0">
         <div className="feature bg-success bg-gradient text-white rounded-3 mb-3"><i className="bi bi-building" /></div>
         <h2 className="h4 fw-bolder">Featured title</h2>
         <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
@@ -22,8 +22,8 @@ const Feature = () => {
           Call to action
           <i className="bi bi-arrow-right" />
         </a>
-      </div>
-      <div className="col-lg-4">
+      </section>
+      <section className="col-lg-4">
         <div className="feature bg-success bg-gradient text-white rounded-3 mb-3"><i className="bi bi-toggles2" /></div>
         <h2 className="h4 fw-bolder">Featured title</h2>
         <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
@@ -31,10 +31,10 @@ const Feature = () => {
           Call to action
           <i className="bi bi-arrow-right" />
         </a>
-      </div>
+      </section>
     </div>
-  </div>
-</section>
+  </article>
+</main>
 
   )
 }
