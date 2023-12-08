@@ -22,7 +22,7 @@ const Login = () => {
         navigate("/dashboard");       
       } catch (error) {
         console.error("Login failed:", error);
-        formik.setErrors({ general: error });
+        formik.setErrors({ general:error});
       }
     },
   });
@@ -59,7 +59,7 @@ const Login = () => {
                     <form className="user" onSubmit={formik.handleSubmit}>
                       {formik.errors.general && (
                         <section className="alert alert-danger" role="alert">
-                          {formik.errors.general}
+                          {formik.errors.general.message}
                         </section>
                       )}
                       <section className="form-group">

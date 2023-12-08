@@ -18,7 +18,6 @@ export const login = async (email, password) => {
     const response = await axios.get(`${config.usersApi}/registered-users`);
     const registeredUsers = response.data;
     const user = registeredUsers.find((user) => user.email === email);
-    console.log(user)
     if (user && user.password === password) {
       localStorage.setItem("token", generateToken());
       localStorage.setItem('user-info', JSON.stringify(user));
@@ -28,7 +27,7 @@ export const login = async (email, password) => {
     }
   } catch (error) {
     console.error("Login failed:", error.message);
-    throw new Error("Login failed");
+    throw new Error(error.message);
   }
 };
 

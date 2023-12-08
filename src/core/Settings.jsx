@@ -3,7 +3,7 @@ import profileLogo from "../assets/img/undraw_profile.svg";
 import Layout from "./layout/Layout";
 const Settings = () => {
   const user = JSON.parse(localStorage.getItem("user-info"));
-  
+
   return (
     <Layout>
       <article className="row justify-content-center">
@@ -28,8 +28,8 @@ const Settings = () => {
                 </section>
                 <section className="col-md-9 py-2 px-lg-5 px-sm-0">
                   <form className="">
-                    <fieldset className="form-group card border">
-                      <legend className="text-center card-header">Personal Information</legend>
+                    <fieldset className="form-group card shadow border">
+                      <legend className="text-center card-header m-0 bg-orange text-white p-0">Personal Information</legend>
                       <div className="card-body d-flex flex-wrap">
                       <div className="col-sm-6 mb-3">
                         <label htmlFor="firstname" className="form-label ml-2">
@@ -152,8 +152,8 @@ const Settings = () => {
                       </div>
                       </div>
                     </fieldset>
-                    <fieldset className="form-group card ">
-                      <legend className="card-header text-center">
+                    <fieldset className="form-group card shadow ">
+                      <legend className="card-header text-center m-0 bg-orange text-white p-0">
                         Address
                       </legend>
                       <div className="card-body d-flex flex-wrap">
