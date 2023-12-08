@@ -19,7 +19,7 @@ const PriceCard = ({ details }) => {
           <ul className="list-unstyled mb-4">
             {details.features.map((list, index) => {
               return (
-                <li className="mb-3">
+                <li className="mb-3" key={index}>
                   <i
                     className={`bi ${
                       list.value ? "bi-check text-primary" : "bi-x text-muted"

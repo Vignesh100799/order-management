@@ -16,7 +16,8 @@ const ReportCard = ({ title, value, icon, loading }) => {
               </div>
             </div>
             <div className="col-auto">
-              <i className={`fas ${icon} fa-2x text-gray-300`} />
+              {/* <i className={`fas ${icon} fa-2x text-gray-300`} /> */}
+              {icon}
             </div>
           </div>
         </main>

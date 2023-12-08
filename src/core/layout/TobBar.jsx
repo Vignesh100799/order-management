@@ -4,30 +4,27 @@ import messageLogo1 from "../../assets/img/undraw_profile_1.svg";
 import messageLogo2 from "../../assets/img/undraw_profile_2.svg";
 import messageLogo3 from "../../assets/img/undraw_profile_3.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { setSideBarToggle, sideBarToggle } from "../../features/UserReducer";
+import { setSideBarToggle, sideBarToggle } from "../../features/OrderReducer";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../Components/User/Auth/authService";
 import "./styles/navbar.css";
 
 const TobBar = () => {
   const dispatch = useDispatch();
-
   const sidebarToggle = useSelector((state) => state.order_list.sideBarToggle);
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user-info"));
   const handleSidebar = () => {
     dispatch(setSideBarToggle(!sideBarToggle));
   };
-
   const removeSidebar = () => {
     dispatch(setSideBarToggle(sideBarToggle));
   };
 
-  const navigate = useNavigate();
-
   const handleLogout = () => {
-    console.log("Logging out...");
     logout();
-    console.log("Logged out.");
     navigate("/login");
+    window.location.href = "/login";
   };
 
   return (
@@ -53,7 +50,6 @@ const TobBar = () => {
 
       {/* Topbar Navbar */}
       <ul className="navbar-nav ml-auto">
-
         {/* Nav Item - Alerts */}
         <li className="nav-item dropdown no-arrow mx-1">
           <a
@@ -217,7 +213,7 @@ const TobBar = () => {
             aria-expanded="false"
           >
             <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-              Naveen Karmegam
+              {user.firstname}
             </span>
             <img
               className="img-profile rounded-circle"

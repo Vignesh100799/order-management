@@ -26,8 +26,6 @@ export default function LineChartOD() {
     <section style={{width:'100%'}}>
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
-        // width={500}
-        // height={200}
         data={data}
         margin={{
           top: 10,

@@ -1,12 +1,13 @@
 import { registerValidationSchema } from "./schema/validationSchema";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Icons/Logo";
 import { useFormik } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { config } from "../../config/config";
 const Register = () => {
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       firstname: "",
@@ -25,6 +26,7 @@ const Register = () => {
         if (response.status === 201) {
           toast.success("Registration Successfully done 😃!");
         }
+        navigate('/login')
         formik.resetForm();
       } catch (error) {
         console.error("Error during registration:", error);
@@ -127,7 +129,7 @@ const Register = () => {
                             : ""
                         }`}
                         id="password"
-                        placeholder="Last Name"
+                        placeholder="password"
                         name="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
@@ -148,7 +150,7 @@ const Register = () => {
                             : ""
                         }`}
                         id="cpassword"
-                        placeholder="Last Name"
+                        placeholder="confirm password"
                         name="cpassword"
                         value={formik.values.cpassword}
                         onChange={formik.handleChange}

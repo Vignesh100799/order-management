@@ -11,7 +11,7 @@ const OrderForm = ({ formik, title, buttonText }) => {
           <fieldset>
             <main className="row">
               <section className="col-lg-4 mb-3">
-                <label htmlFor="orderid" className="form-label">
+                <label htmlFor="orderId" className="form-label">
                   Oder ID
                 </label>
                 <input

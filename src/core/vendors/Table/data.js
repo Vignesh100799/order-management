@@ -5,7 +5,7 @@ export const customerData = [
       shippingService: 'priority',
       address: {
         street: 'east st',
-        suite: 'Apt 101',
+        town: 'Apt 101',
         city: 'Chennai',
         country: 'India',
         zipCode: '28001',
@@ -17,7 +17,7 @@ export const customerData = [
       shippingService: 'standard',
       address: {
         street: 'main st',
-        suite: '',
+        town: '',
         city: 'Chennai',
         country: 'India',
         zipCode: '100-0004',
@@ -29,7 +29,7 @@ export const customerData = [
       shippingService: 'express',
       address: {
         street: 'berlin st',
-        suite: 'Apt 203',
+        town: 'Apt 203',
         city: 'Chennai',
         country: 'India',
         zipCode: '10178',
@@ -41,7 +41,7 @@ export const customerData = [
       shippingService: 'priority',
       address: {
         street: 'copacabana st',
-        suite: '',
+        town: '',
         city: 'Chennai',
         country: 'India',
         zipCode: '22020-002',
@@ -53,7 +53,7 @@ export const customerData = [
       shippingService: 'express',
       address: {
         street: 'pudong st',
-        suite: 'Apt 501',
+        town: 'Apt 501',
         city: 'Chennai',
         country: 'India',
         zipCode: '200120',
@@ -65,7 +65,7 @@ export const customerData = [
       shippingService: 'standard',
       address: {
         street: 'red square st',
-        suite: '',
+        town: '',
         city: 'Chennai',
         country: 'India',
         zipCode: '103073',
@@ -77,7 +77,7 @@ export const customerData = [
       shippingService: 'priority',
       address: {
         street: 'champs-elysees st',
-        suite: 'Apt 401',
+        town: 'Apt 401',
         city: 'Trichy',
         country: 'India',
         zipCode: '75008',
@@ -89,7 +89,7 @@ export const customerData = [
         shippingService: 'express',
         address: {
           street: 'north st',
-          suite: '',
+          town: '',
           city: 'Trichy',
           country: 'India',
           zipCode: '10001',
@@ -101,7 +101,7 @@ export const customerData = [
         shippingService: 'standard',
         address: {
           street: 'west st',
-          suite: 'Apt 302',
+          town: 'Apt 302',
           city: 'Trichy',
           country: 'India',
           zipCode: '931762',
@@ -113,7 +113,7 @@ export const customerData = [
         shippingService: 'priority',
         address: {
           street: 'south st',
-          suite: '',
+          town: '',
           city: 'Trichy',
           country: 'India',
           zipCode: '2000',
@@ -125,7 +125,7 @@ export const customerData = [
         shippingService: 'express',
         address: {
           street: 'north st',
-          suite: '',
+          town: '',
           city: 'Trichy',
           country: 'India',
           zipCode: '10001',
@@ -137,7 +137,7 @@ export const customerData = [
         shippingService: 'standard',
         address: {
           street: 'west st',
-          suite: 'Apt 302',
+          town: 'Apt 302',
           city: 'Trichy',
           country: 'India',
           zipCode: '97398464',
@@ -149,7 +149,7 @@ export const customerData = [
         shippingService: 'priority',
         address: {
           street: 'south st',
-          suite: '',
+          town: '',
           city: 'Trichy',
           country: 'India',
           zipCode: '2000',
@@ -161,7 +161,7 @@ export const customerData = [
       shippingService: 'priority',
       address: {
         street: 'east st',
-        suite: 'Apt 101',
+        town: 'Apt 101',
         city: 'Coimbatore',
         country: 'India',
         zipCode: '28001',
@@ -173,7 +173,7 @@ export const customerData = [
       shippingService: 'standard',
       address: {
         street: 'main st',
-        suite: '',
+        town: '',
         city: 'Coimbatore',
         country: 'India',
         zipCode: '100-0004',
@@ -185,7 +185,7 @@ export const customerData = [
       shippingService: 'express',
       address: {
         street: 'berlin st',
-        suite: 'Apt 203',
+        town: 'Apt 203',
         city: 'Coimbatore',
         country: 'India',
         zipCode: '10178',
@@ -197,7 +197,7 @@ export const customerData = [
       shippingService: 'priority',
       address: {
         street: 'copacabana st',
-        suite: '',
+        town: '',
         city: 'Coimbatore',
         country: 'India',
         zipCode: '22020-002',
@@ -209,7 +209,7 @@ export const customerData = [
       shippingService: 'express',
       address: {
         street: 'pudong st',
-        suite: 'Apt 501',
+        town: 'Apt 501',
         city: 'Coimbatore',
         country: 'India',
         zipCode: '200120',
@@ -221,7 +221,7 @@ export const customerData = [
       shippingService: 'standard',
       address: {
         street: 'red square st',
-        suite: '',
+        town: '',
         city: 'Coimbatore',
         country: 'India',
         zipCode: '103073',
@@ -233,7 +233,7 @@ export const customerData = [
       shippingService: 'priority',
       address: {
         street: 'champs-elysees st',
-        suite: 'Apt 401',
+        town: 'Apt 401',
         city: 'Salem',
         country: 'India',
         zipCode: '75008',
@@ -245,7 +245,7 @@ export const customerData = [
         shippingService: 'express',
         address: {
           street: 'north st',
-          suite: '',
+          town: '',
           city: 'Salem',
           country: 'India',
           zipCode: '10001',
@@ -257,7 +257,7 @@ export const customerData = [
         shippingService: 'standard',
         address: {
           street: 'west st',
-          suite: 'Apt 302',
+          town: 'Apt 302',
           city: 'Salem',
           country: 'India',
           zipCode: '983688',
@@ -269,7 +269,7 @@ export const customerData = [
         shippingService: 'priority',
         address: {
           street: 'south st',
-          suite: '',
+          town: '',
           city: 'Salem',
           country: 'India',
           zipCode: '2000',
@@ -281,7 +281,7 @@ export const customerData = [
         shippingService: 'express',
         address: {
           street: 'north st',
-          suite: '',
+          town: '',
           city: 'Salem',
           country: 'India',
           zipCode: '10001',
@@ -293,7 +293,7 @@ export const customerData = [
         shippingService: 'standard',
         address: {
           street: 'west st',
-          suite: 'Apt 302',
+          town: 'Apt 302',
           city: 'Salem',
           country: 'India',
           zipCode: '69733145',
@@ -305,7 +305,7 @@ export const customerData = [
         shippingService: 'priority',
         address: {
           street: 'south st',
-          suite: '',
+          town: '',
           city: 'Salem',
           country: 'India',
           zipCode: '2000',
@@ -317,7 +317,7 @@ export const customerData = [
         shippingService: 'express',
         address: {
           street: 'west st',
-          suite: 'Apt 105',
+          town: 'Apt 105',
           city: 'Madurai',
           country: 'India',
           zipCode: '90001',
@@ -329,7 +329,7 @@ export const customerData = [
         shippingService: 'standard',
         address: {
           street: 'calle principal',
-          suite: '',
+          town: '',
           city: 'Madurai',
           country: 'India',
           zipCode: '08001',
@@ -341,7 +341,7 @@ export const customerData = [
         shippingService: 'express',
         address: {
           street: 'kyoto st',
-          suite: 'Apt 201',
+          town: 'Apt 201',
           city: 'Madurai',
           country: 'India',
           zipCode: '600-8017',
@@ -353,7 +353,7 @@ export const customerData = [
         shippingService: 'priority',
         address: {
           street: 'hamburg st',
-          suite: '',
+          town: '',
           city: 'Madurai',
           country: 'India',
           zipCode: '20095',

@@ -6,7 +6,7 @@ import { validationSchema } from "./Schema/validationSchema";
 import { useDispatch } from "react-redux";
 
 import axios from "axios";
-import { createOder } from "../../../features/UserReducer";
+import { createOder } from "../../../features/OrderReducer";
 import { config } from "../../../config/config";
 
 import OrderForm from "./lib/OrderForm";

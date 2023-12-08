@@ -10,7 +10,7 @@ import CommunityIcon from "../vendors/Icons/CommunityIcon";
 import TutoIcon from "../vendors/Icons/TutoIcon";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setSideBarToggle } from "../../features/UserReducer";
+import { setSideBarToggle } from "../../features/OrderReducer";
 import "./styles/navbar.css";
 const Sidebar = () => {
   const location = useLocation();
@@ -79,11 +79,11 @@ const Sidebar = () => {
             {navItems.map((item) => (
               <li
                 key={item.path}
-                className={`nav-item m-0 p-0 bg-grey-h p-md-2 py-sm-3 ${
+                className={`nav-item m-0 p-0 bg-grey-h p-md-1 py-sm-2 mb-1 ${
                   location.pathname === item.path ? "bg-grey" : ""
                 } ${sideBarToggle ? "" : "mt-4"}`}
               >
-                <Link to={item.path} className="nav-link p-0 w-100">
+                <Link to={item.path} className="nav-link p-0 w-100 p-2">
                   {item.icon}
                   <span
                     className={`text-black ml-2 ${

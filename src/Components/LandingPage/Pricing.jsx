@@ -1,25 +1,20 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect} from "react";
 import PriceCard from "./PriceCard";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPricing } from "../../features/UserReducer";
+import { HashLoader } from "react-spinners";
+
 
 const Pricing = () => {
-  const [pricing, setPricing] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const getPrice = async () => {
-      try {
-        const cardData = await axios.get(
-          "https://655e29389f1e1093c59a9ffc.mockapi.io/Package"
-        );
-        setPricing([...cardData.data]);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getPrice();
-  });
+
+  const dispatch = useDispatch();
+  const{pricing,loading} = useSelector(state=>state.users_info)
+  useEffect(()=>{
+    if(pricing.length === 0){
+      dispatch(fetchPricing())
+    }
+  },[dispatch,pricing])
 
   return (
     <article className="bg-light py-5 border-bottom">
@@ -29,9 +24,11 @@ const Pricing = () => {
           <p className="lead mb-0">With our no hassle pricing plans</p>
         </hgroup>
         <section className="row gx-5 justify-content-center">
-          {loading ? (
-            <div className="h1 text-center">Loading...</div>
-          ) : (
+          {
+          loading ? (
+            <HashLoader />
+          ) : 
+          (
             pricing.map((list, index) => {
               return <PriceCard key={index} details={list} />;
             })

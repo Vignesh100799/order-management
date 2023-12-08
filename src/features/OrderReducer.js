@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const userSlice = createSlice({
+export const orderSlice = createSlice({
     name: "order_list",
     initialState: {
         orders: [],
         loading: false,
-        viewOrderInfo:{}
+        viewOrderInfo:{},
+        userInfo:{}      
     },
     reducers: {
         setOrder: (state, action) => {
@@ -56,6 +57,6 @@ export const {
     editOrder,
     deleteOrder,
     setLoading
-} = userSlice.actions;
+} = orderSlice.actions;
 
-export default userSlice.reducer;
+export default orderSlice.reducer;

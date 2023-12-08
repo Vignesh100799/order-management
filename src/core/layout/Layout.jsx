@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import TobBar from "./TobBar";
-
+import './styles/core.css'
 const Layout = ({ children }) => (
   <main id="page-top">
     <header id="wrapper">

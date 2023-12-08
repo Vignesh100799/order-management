@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { deleteOrder, setLoading, setOrder } from "../features/UserReducer";
+import { deleteOrder, setLoading, setOrder } from "../features/OrderReducer";
 import { HashLoader } from "react-spinners";
 import {
   CircleFill,
@@ -170,7 +170,7 @@ const Order = () => {
             paginationDisplayMode="pages"
             defaultColumn={{
               minSize: 20,
-              maxSize: 150,
+              maxSize: 147,
               size: 180,
             }}
           />

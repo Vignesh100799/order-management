@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { viewOrder } from "../../../features/UserReducer";
+import { viewOrder } from "../../../features/OrderReducer";
 import axios from "axios";
 import { config } from "../../../config/config";
 import Layout from "../../layout/Layout";

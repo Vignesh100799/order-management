@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { editOrder } from "../../../features/UserReducer";
+import { editOrder } from "../../../features/OrderReducer";
 import { validationSchema } from "./Schema/validationSchema";
 
 import axios from "axios";
@@ -50,7 +50,7 @@ const EditOrder = () => {
         const dataList = await axios.get(
           `${config.ordersApi}/orders/${params.id}`
         );
-        dispatch(editOrder({ id: dataList.data.id, ...dataList.data }));
+        dispatch(editOrder(dataList.data));
         formik.setValues(dataList.data);
       } catch (error) {
         console.log(error);
