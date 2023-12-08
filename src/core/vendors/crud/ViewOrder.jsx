@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Sidebar from "../../../Components/Navbar/Sidebar";
 import TobBar from "../../../Components/Navbar/TobBar";
-import { setOrder } from "../../../features/UserReducer";
+import { setOrder,lookOrder } from "../../../features/UserReducer";
 import axios from "axios";
 
 const ViewOrder = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const { orders} = useSelector((state) => state.order_list);
+  const {orders,lookOrder} = useSelector((state) => state.order_list);
 
   useEffect(() => {
     const getData = async () => {
@@ -17,7 +17,7 @@ const ViewOrder = () => {
         const order = await axios.get(
           `https://65630c3eee04015769a6bb77.mockapi.io/orders/${params.id}`
         );
-        dispatch(setOrder(order.data));
+        dispatch(lookOrder(order.data));
         console.log(orders);
       } catch (error) {
         console.log(error);

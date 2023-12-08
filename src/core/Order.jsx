@@ -87,7 +87,7 @@ const Order = () => {
 
       fetchData();
     
-  }, [loading, dispatch]);
+  }, [ ]);
 
   return (
     <div id="page-top">

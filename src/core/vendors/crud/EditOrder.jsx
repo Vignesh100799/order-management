@@ -29,9 +29,9 @@ const EditOrder = () => {
       try {
         const updatedData = await axios.put(`https://65630c3eee04015769a6bb77.mockapi.io/orders/${params.id}`,
       values,
-      navigate('/admin')
       )
       dispatch(editOrder(updatedData.data))
+      navigate('/admin')
       } catch (error) {
         console.error(error)
       }
