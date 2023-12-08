@@ -3,6 +3,7 @@ import profileLogo from "../assets/img/undraw_profile.svg";
 import Layout from "./layout/Layout";
 const Settings = () => {
   const user = JSON.parse(localStorage.getItem("user-info"));
+  
   return (
     <Layout>
       <article className="row justify-content-center">
