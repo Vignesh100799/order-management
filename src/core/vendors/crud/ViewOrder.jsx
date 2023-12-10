@@ -6,11 +6,12 @@ import { viewOrder } from "../../../features/OrderReducer";
 import axios from "axios";
 import { config } from "../../../config/config";
 import Layout from "../../layout/Layout";
+import { HashLoader } from "react-spinners";
 
 const ViewOrder = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const { viewOrderInfo } = useSelector((state) => state.order_list);
+  const { viewOrderInfo, loading } = useSelector((state) => state.order_list);
 
   useEffect(() => {
     const getData = async () => {
@@ -41,13 +42,52 @@ const ViewOrder = () => {
             </div>
             <div className="card-body">
               <div>
-                {viewOrderInfo && (
-                  <div>
-                    <p>Order ID: {viewOrderInfo.id}</p>
-                    <p>Order Number: {viewOrderInfo.orderNumber}</p>
-                    <p>Customer Name: {viewOrderInfo.customerName}</p>
-                  </div>
-                )}
+                {loading ? (
+
+                  <HashLoader />
+                ) : (
+                   viewOrderInfo && (<div className="table-responsive ">
+                   <table className="table table-bordered table-striped">
+                     <tbody>
+                       <tr>
+                         <th className="text-end">Customer Name</th>
+                         <td className="">{viewOrderInfo.customerName}</td>
+                       </tr>
+                       <tr>
+                         <th className="text-end">Oder Id</th>
+                         <td>{viewOrderInfo.orderId}</td>
+                       </tr>
+                       <tr>
+                         <th className="text-end">Oder Number</th>
+                         <td>{viewOrderInfo.orderNumber}</td>
+                       </tr>
+                       <tr>
+                         <th className="text-end">Item Number</th>
+                         <td>{viewOrderInfo.item}</td>
+                       </tr>
+                       <tr>
+                         <th className="text-end">status</th>
+                         <td>{viewOrderInfo.status}</td>
+                       </tr>
+                       <tr>
+                         <th className="text-end">Shipping Service</th>
+                         <td>{viewOrderInfo.shippingService}</td>
+                       </tr>
+                       <tr>
+                         <th className="text-end">Address</th>
+                         <td> <div>{`${viewOrderInfo.address?.street}, ${viewOrderInfo.address?.town}`}</div>
+                         <span>{`${viewOrderInfo.address?.city}, ${viewOrderInfo.address?.country}, ${viewOrderInfo.address?.zipcode}`}</span></td>
+                         
+                       </tr>
+                       <tr>
+                         <th className="text-end">Tracking Code</th>
+                         <td>{viewOrderInfo.trackingCode}</td>
+                       </tr>
+                       
+                     </tbody>
+                   </table>
+                 </div>)
+                  )}
               </div>
             </div>
           </div>

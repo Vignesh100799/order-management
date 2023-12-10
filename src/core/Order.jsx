@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { deleteOrder, setLoading, setOrder } from "../features/OrderReducer";
+import { deleteOrder, fetchOrders, setLoading, setOrder } from "../features/OrderReducer";
 import { HashLoader } from "react-spinners";
 import {
   CircleFill,
@@ -19,8 +19,15 @@ import Layout from "./layout/Layout";
 
 const Order = () => {
   const dispatch = useDispatch();
+  const { orders, loading} = useSelector((state) => state.order_list);
+  
+  useEffect(()=>{
+    if(orders.length === 0){
+      dispatch(fetchOrders())
+    }
+  },[dispatch,orders])
+  
 
-  const { orders, loading, error } = useSelector((state) => state.order_list);
   const handleDeleteOrder = async (orderId) => {
     try {
       await axios.delete(`${config.ordersApi}/orders/${orderId}`);
@@ -109,20 +116,6 @@ const Order = () => {
     [handleDeleteOrder]
   );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (orders.length === 0) {
-        try {
-          dispatch(setLoading());
-          const response = await axios.get(`${config.ordersApi}/orders`);
-          dispatch(setOrder(response.data));
-        } catch (error) {
-          console.error("Error fetching orders:", error);
-        }
-      }
-    };
-    fetchData();
-  }, [dispatch]);
 
   return (
     <Layout>
@@ -153,6 +146,7 @@ const Order = () => {
           <MaterialReactTable
             columns={columns}
             data={orders}
+            enableRowNumbers={true}
             enableGlobalFilterModes
             initialState={{
               showGlobalFilter: true,

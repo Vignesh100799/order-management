@@ -1,12 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Sector,Cell } from "recharts";
 
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 }
-];
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -82,8 +76,24 @@ const renderActiveShape = (props) => {
   );
 };
 
-export default function PieChartOD() {
+export default function PieChartOD({orders}) {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const data = [
+    {
+      name: "Standard",
+      value : orders.filter((order) => order.shippingService === "standard").length * 100,
+    },
+    {
+      name: "Priority",
+      value : orders.filter((order) => order.shippingService === "priority").length * 100,
+    },
+    {
+      name: "Express",
+      value : orders.filter((order) => order.shippingService === "express").length * 100,
+    },
+  ]
+  
   const onPieEnter = useCallback(
     (_, index) => {
       setActiveIndex(index);

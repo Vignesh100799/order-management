@@ -1,11 +1,6 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 
-const OrderForm = ({ formik, title, buttonText}) => {
-  
-  const user = JSON.parse(localStorage.getItem("user-info"))
-  const userRole = user.role ? "admin" : ''
-  const location = useLocation()
+const NewForm = ({ formik, title, buttonText }) => {
   return (
     <article className="card">
       <header className="card-header">
@@ -15,107 +10,17 @@ const OrderForm = ({ formik, title, buttonText}) => {
         <form action="" onSubmit={formik.handleSubmit}>
           <fieldset>
             <main className="row">
-              {
-                location.pathname !== '/create-order' && (userRole === 'admin' && (
-                  <>
-                    <section className="col-lg-4 mb-3">
-                      <label htmlFor="orderId" className="form-label">
-                        Order ID
-                      </label>
-                      <input
-                        type="text"
-                        className={`form-control ${formik.touched.orderId && formik.errors.orderId
-                            ? "is-invalid"
-                            : ""
-                          }`}
-                        name="orderId"
-                        id="orderId"
-                        value={formik.values.orderId}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                      />
-                      {formik.touched.orderId && formik.errors.orderId && (
-                        <span className="invalid-feedback">
-                          {formik.errors.orderId}
-                        </span>
-                      )}
-                    </section>
-                    <section className="col-lg-4 mb-3">
-                      <label htmlFor="orderNumber" className="form-label">
-                        Order Number
-                      </label>
-                      <input
-                        type="text"
-                        className={`form-control ${formik.touched.orderNumber && formik.errors.orderNumber
-                            ? "is-invalid"
-                            : ""
-                          }`}
-                        name="orderNumber"
-                        id="orderNumber"
-                        value={formik.values.orderNumber}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                      />
-                      {formik.touched.orderNumber && formik.errors.orderNumber && (
-                        <span className="invalid-feedback">
-                          {formik.errors.orderNumber}
-                        </span>
-                      )}
-                    </section>
-                    <section className="col-lg-4 mb-3">
-                      <label htmlFor="item" className="form-label">
-                        Item
-                      </label>
-                      <input
-                        type="text"
-                        className={`form-control ${formik.touched.item && formik.errors.item
-                            ? "is-invalid"
-                            : ""
-                          }`}
-                        name="item"
-                        id="item"
-                        value={formik.values.item}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                      />
-                      {formik.touched.item && formik.errors.item && (
-                        <span className="invalid-feedback">{formik.errors.item}</span>
-                      )}
-                    </section>
-                    <section className="col-lg-4 mb-3">
-                      <label htmlFor="trackingCode" className="form-label">
-                        Tracking Code
-                      </label>
-                      <input
-                        type="text"
-                        className={`form-control ${formik.touched.trackingCode && formik.errors.customerName
-                            ? "is-invalid"
-                            : ""
-                          }`}
-                        name="trackingCode"
-                        id="trackingCode"
-                        value={formik.values.trackingCode}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                      />
-                      {formik.touched.trackingCode && formik.errors.trackingCode && (
-                        <span className="invalid-feedback">
-                          {formik.errors.trackingCode}
-                        </span>
-                      )}
-                    </section>
-                  </>))
-              }
-              <section className="col-lg-4 mb-3">
+            <section className="col-lg-4 mb-3">
                 <label htmlFor="customerName" className="form-label">
                   Customer Name
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${formik.touched.customerName && formik.errors.customerName
+                  className={`form-control ${
+                    formik.touched.customerName && formik.errors.customerName
                       ? "is-invalid"
                       : ""
-                    }`}
+                  }`}
                   name="customerName"
                   id="customerName"
                   value={formik.values.customerName}
@@ -130,14 +35,15 @@ const OrderForm = ({ formik, title, buttonText}) => {
               </section>
               <section className="col-lg-4 mb-3">
                 <label htmlFor="street" className="form-label">
-                  D.No/ Street
+                 D.No/ Street
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${formik.touched.address?.street && formik.errors.address?.street
+                  className={`form-control ${
+                    formik.touched.address?.street && formik.errors.address?.street
                       ? "is-invalid"
                       : ""
-                    }`}
+                  }`}
                   name="address.street"
                   id="address.street"
                   value={formik.values.address?.street}
@@ -156,10 +62,11 @@ const OrderForm = ({ formik, title, buttonText}) => {
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${formik.touched.address?.town && formik.errors.address?.town
+                  className={`form-control ${
+                    formik.touched.address?.town && formik.errors.address?.town
                       ? "is-invalid"
                       : ""
-                    }`}
+                  }`}
                   name="address.town"
                   id="address.town"
                   value={formik.values.address?.town}
@@ -178,10 +85,11 @@ const OrderForm = ({ formik, title, buttonText}) => {
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${formik.touched.address?.city && formik.errors.address?.city
+                  className={`form-control ${
+                    formik.touched.address?.city && formik.errors.address?.city
                       ? "is-invalid"
                       : ""
-                    }`}
+                  }`}
                   name="address.city"
                   id="address.city"
                   value={formik.values.address?.city}
@@ -198,10 +106,11 @@ const OrderForm = ({ formik, title, buttonText}) => {
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${formik.touched.address?.country && formik.errors.address?.country
+                  className={`form-control ${
+                    formik.touched.address?.country && formik.errors.address?.country
                       ? "is-invalid"
                       : ""
-                    }`}
+                  }`}
                   name="address.country"
                   id="address.country"
                   value={formik.values.address?.country}
@@ -218,10 +127,11 @@ const OrderForm = ({ formik, title, buttonText}) => {
                 </label>
                 <input
                   type="number"
-                  className={`form-control ${formik.touched.address?.zipcode && formik.errors.address?.zipcode
+                  className={`form-control ${
+                    formik.touched.address?.zipcode && formik.errors.address?.zipcode
                       ? "is-invalid"
                       : ""
-                    }`}
+                  }`}
                   name="address.zipcode"
                   id="address.zipcode"
                   value={formik.values.address?.zipcode}
@@ -234,15 +144,17 @@ const OrderForm = ({ formik, title, buttonText}) => {
                   </span>
                 )}
               </section>
+
               <section className="col-lg-4 mb-3">
                 <label htmlFor="status" className="form-label">
                   Status
                 </label>
                 <select
-                  className={`form-select ${formik.touched.status && formik.errors.status
+                  className={`form-select ${
+                    formik.touched.status && formik.errors.status
                       ? "is-invalid"
                       : ""
-                    }`}
+                  }`}
                   value={formik.values.status}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -251,14 +163,11 @@ const OrderForm = ({ formik, title, buttonText}) => {
                 >
                   <optgroup label="status">
                     <option value="">choose</option>
-                    <option value="order" disabled={location.pathname !== '/create-order'}>order</option>
+                    <option value="order">order</option>
+                    {/* <option value="production">production</option>
                     <option value="cancelled">cancelled</option>
-                    {location.pathname !== '/create-order' && userRole === 'admin' && (
-                      <>
-                        <option value="production">production</option>
-                        <option value="delivered">delivered</option>
-                      </>)}
-                    <option value="Return">Return</option>
+                    <option value="delivered">delivered</option>
+                    <option value="Return">Return</option> */}
                   </optgroup>
                 </select>
                 {formik.touched.status && formik.errors.status && (
@@ -268,16 +177,19 @@ const OrderForm = ({ formik, title, buttonText}) => {
                 )}
               </section>
 
+
+
               <section className="col-lg-4 mb-3">
                 <label htmlFor="shippingService" className="form-label">
                   Shipping Service
                 </label>
                 <select
-                  className={`form-select ${formik.touched.shippingService &&
-                      formik.errors.shippingService
+                  className={`form-select ${
+                    formik.touched.shippingService &&
+                    formik.errors.shippingService
                       ? "is-invalid"
                       : ""
-                    }`}
+                  }`}
                   value={formik.values.shippingService}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -314,4 +226,4 @@ const OrderForm = ({ formik, title, buttonText}) => {
   );
 };
 
-export default OrderForm;
+export default NewForm;

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteOrder, setLoading, setOrder } from "../features/OrderReducer";
+import { deleteOrder, fetchOrders, setLoading, setOrder } from "../features/OrderReducer";
 import { HashLoader } from "react-spinners";
 import {
   CircleFill,
@@ -19,7 +19,14 @@ import Layout from "./layout/Layout";
 const Admin = () => {
   const dispatch = useDispatch();
 
-  const { orders, loading, error } = useSelector((state) => state.order_list);
+  const { orders, loading} = useSelector((state) => state.order_list);
+  
+  useEffect(()=>{
+    if(orders.length === 0){
+      dispatch(fetchOrders())
+    }
+  },[dispatch,orders])
+ 
   const handleDeleteOrder = async (orderId) => {
     try {
       await axios.delete(`${config.ordersApi}/orders/${orderId}`);
@@ -108,21 +115,21 @@ const Admin = () => {
     [handleDeleteOrder]
   );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (orders.length === 0) {
-        try {
-          dispatch(setLoading());
-          const response = await axios.get(`${config.ordersApi}/orders`);
-          dispatch(setOrder(response.data));
-        } catch (error) {
-          console.error("Error fetching orders:", error);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (orders.length === 0) {
+  //       try {
+  //         dispatch(setLoading());
+  //         const response = await axios.get(`${config.ordersApi}/orders`);
+  //         dispatch(setOrder(response.data.reverse()));
+  //       } catch (error) {
+  //         console.error("Error fetching orders:", error);
+  //       }
+  //     }
+  //   };
 
-    fetchData();
-  }, [loading, dispatch]);
+  //   fetchData();
+  // }, [loading, dispatch]);
 
   return (
     <Layout>
@@ -151,6 +158,7 @@ const Admin = () => {
               columns={columns}
               data={orders}
               enableGlobalFilterModes
+              enableRowNumbers={true}
               initialState={{
                 showGlobalFilter: true,
               }}

@@ -1,26 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import profileLogo from "../../assets/img/undraw_profile.svg";
 import messageLogo1 from "../../assets/img/undraw_profile_1.svg";
 import messageLogo2 from "../../assets/img/undraw_profile_2.svg";
 import messageLogo3 from "../../assets/img/undraw_profile_3.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { setSideBarToggle, sideBarToggle } from "../../features/OrderReducer";
+// import { setSideBarToggle, sideBarToggle } from "../../features/FunctionalReducer";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../Components/User/Auth/authService";
 import "./styles/navbar.css";
+import { setUser } from "../../features/UserReducer";
+import { setSideBarToggle, sideBarToggle } from "../../features/FunctionalReducer";
 
 const TobBar = () => {
   const dispatch = useDispatch();
-  const sidebarToggle = useSelector((state) => state.order_list.sideBarToggle);
-  const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user-info"));
+  const navigate = useNavigate(); 
+  const sidebarToggle = useSelector((state) => state.funactionality.sideBarToggle);
+  const user = useSelector(state=>state.users_info.user)
+
+
+  useEffect(() => {
+    dispatch(setUser(JSON.parse(localStorage.getItem("user-info"))));
+  }, [dispatch]);
   const handleSidebar = () => {
     dispatch(setSideBarToggle(!sideBarToggle));
   };
   const removeSidebar = () => {
     dispatch(setSideBarToggle(sideBarToggle));
   };
-
   const handleLogout = () => {
     logout();
     navigate("/login");

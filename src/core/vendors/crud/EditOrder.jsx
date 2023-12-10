@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { editOrder } from "../../../features/OrderReducer";
-import { validationSchema } from "./Schema/validationSchema";
+import { EditvalidationSchema } from "./Schema/validationSchema";
 
 import axios from "axios";
 import { config } from "../../../config/config";
@@ -16,6 +16,7 @@ const EditOrder = () => {
   const params = useParams();
   // const setOrder = useSelector((state) => state.order_list);
 
+
   const formik = useFormik({
     initialValues: {
       orderId: "",
@@ -25,8 +26,15 @@ const EditOrder = () => {
       customerName: "",
       shippingService: "",
       trackingCode: "",
+      address:{
+        street: "",
+        town: "",
+        city: "",
+        country: "",
+        zipcode: "",
+       }
     },
-    validationSchema: validationSchema,
+    validationSchema: EditvalidationSchema,
     onSubmit: async (values) => {
       try {
         const updatedData = await axios.put(
@@ -34,7 +42,7 @@ const EditOrder = () => {
           values
         );
         dispatch(editOrder(updatedData.data));
-        navigate("/admin");
+        navigate("/order");
       } catch (error) {
         console.error(error);
       }

@@ -2,19 +2,20 @@ import React from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { validationSchema } from "./Schema/validationSchema";
+import { EditvalidationSchema } from "./Schema/validationSchema";
 import { useDispatch } from "react-redux";
 
 import axios from "axios";
-import { createOder } from "../../../features/OrderReducer";
+import { createOrder } from "../../../features/OrderReducer";
 import { config } from "../../../config/config";
 
 import OrderForm from "./lib/OrderForm";
+import NewForm from "./lib/NewForm";
 import Layout from "../../layout/Layout";
+
 const CreateOrder = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const formik = useFormik({
     initialValues: {
       orderId: "",
@@ -24,13 +25,20 @@ const CreateOrder = () => {
       customerName: "",
       shippingService: "",
       trackingCode: "",
+      address:{
+        street: "",
+        town: "",
+        city: "",
+        country: "",
+        zipcode: "",
+       }
     },
-    validationSchema: validationSchema,
+    validationSchema: EditvalidationSchema,
     onSubmit: async (values) => {
       try {
         const response = await axios.post(`${config.ordersApi}/orders`, values);
-        dispatch(createOder(response.data));
-        navigate("/admin");
+        dispatch(createOrder(response.data));
+        navigate("/order");
       } catch (error) {
         console.error(error);
       }
@@ -49,7 +57,7 @@ const CreateOrder = () => {
           Back To Oder
         </Link>
       </hgroup>
-      <OrderForm formik={formik} title="New Order" buttonText="Submit" />
+      <OrderForm formik={formik} title="New Order" buttonText="Submit"/>
     </Layout>
   );
 };

@@ -10,13 +10,14 @@ import CommunityIcon from "../vendors/Icons/CommunityIcon";
 import TutoIcon from "../vendors/Icons/TutoIcon";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setSideBarToggle } from "../../features/OrderReducer";
+import { setSideBarToggle } from "../../features/FunctionalReducer";
 import "./styles/navbar.css";
 const Sidebar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const sideBarToggle = useSelector((state) => state.order_list.sideBarToggle);
-
+  const sideBarToggle = useSelector((state) => state.funactionality.sideBarToggle);
+  const user = JSON.parse(localStorage.getItem("user-info"))
+  
   const handleSidebar = () => {
     dispatch(setSideBarToggle(!sideBarToggle));
   };
@@ -35,11 +36,16 @@ const Sidebar = () => {
       }
     });
   }, []);
+
+
   const navItems = [
     { path: "/dashboard", icon: <DashIcon />, text: "Dashboard" },
     { path: "/order", icon: <OrdeIcon />, text: "Order" },
     { path: "/listing", icon: <ListIcon />, text: "Listing" },
-    { path: "/admin", icon: <AdminIcon />, text: "Admin" },
+    // { path: "/admin", icon: <AdminIcon />, text: "Admin" },
+    ...(user.role  ? [
+      { path: "/admin", icon: <AdminIcon />, text: "Admin" },
+    ] : []),
     { path: "/settings", icon: <SettingIcon />, text: "Setting" },
     { path: "/community", icon: <CommunityIcon />, text: "Community" },
     { path: "/tutorial", icon: <TutoIcon />, text: "Support" },
@@ -69,37 +75,35 @@ const Sidebar = () => {
           </button>
         </section>
       </hgroup>
-     <hr className="bg-black m-0 mb-1" />
-     
-        <nav className="mx-3">
-          <ul
-            className="navbar-nav me-auto mb-2 mb-lg-2"
-            style={{ cursor: "pointer" }}
-          >
-            {navItems.map((item) => (
-              <li
-                key={item.path}
-                className={`nav-item m-0 p-0 bg-grey-h p-md-1 py-sm-2 mb-1 ${
-                  location.pathname === item.path ? "bg-grey" : ""
-                } ${sideBarToggle ? "" : "mt-4"}`}
-              >
-                <Link to={item.path} className="nav-link p-0 w-100 p-2">
-                  {item.icon}
-                  <span
-                    className={`text-black ml-2 ${
-                      sideBarToggle ? "" : "d-none"
-                    }`}
-                  >
-                    {item.text}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <hr className="bg-black m-0 mb-1" />
 
-        <div className="text-center d-none d-md-block"></div>
-     
+      <nav className="mx-3">
+        <ul
+          className="navbar-nav me-auto mb-2 mb-lg-2"
+          style={{ cursor: "pointer" }}
+        >
+          {navItems.map((item) => (
+            <li
+              key={item.path}
+              className={`nav-item m-0 p-0 bg-grey-h p-md-1 py-sm-2 mb-1 ${location.pathname === item.path ? "bg-grey" : ""
+                } ${sideBarToggle ? "" : "mt-4"}`}
+            >
+              <Link to={item.path} className="nav-link p-0 w-100 p-2">
+                {item.icon}
+                <span
+                  className={`text-black ml-2 ${sideBarToggle ? "" : "d-none"
+                    }`}
+                >
+                  {item.text}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div className="text-center d-none d-md-block"></div>
+
     </main>
   );
 };

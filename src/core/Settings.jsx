@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import profileLogo from "../assets/img/undraw_profile.svg";
 import Layout from "./layout/Layout";
+import { useFormik } from "formik";
+import { setUser } from "../features/UserReducer";
+import { useDispatch, useSelector } from "react-redux";
 const Settings = () => {
-  const user = JSON.parse(localStorage.getItem("user-info"));
+  const user = useSelector(state=>state.users_info.user)
+  const dispatch = useDispatch()
+console.log(user)
+  useEffect(() => {
+    dispatch(setUser(JSON.parse(localStorage.getItem("user-info"))));
+  }, [dispatch]);
+
+  const formik = useFormik({
+    initialValues:{
+      firstname: user.firstname
+    }
+  })
 
   return (
     <Layout>
@@ -39,6 +53,7 @@ const Settings = () => {
                           type="text"
                           name="firstname"
                           id="firstname"
+                          value={formik.values.firstname}
                           className="form-control form-control-profile px-3 py-4"
                           placeholder="first name"
                         />
@@ -81,75 +96,7 @@ const Settings = () => {
                         />
                       </div>
 
-                      <div className="col-sm-6 mb-3">
-                        <label
-                          htmlFor="gender"
-                          className="form-check-label my-0 py-0  mx-lg-2"
-                        >
-                          {" "}
-                          Gender :{" "}
-                        </label>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            id="male"
-                            name="gender"
-                            value="male"
-                          />
-                          <label className="form-check-label" htmlFor="male">
-                            Male
-                          </label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            id="female"
-                            name="gender"
-                            value="female"
-                          />
-                          <label className="form-check-label" htmlFor="female">
-                            Female
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-sm-6 mb-3">
-                        <label
-                          htmlFor="m_status"
-                          className="form-check-label my-0 py-0  mx-lg-2"
-                        >
-                          {" "}
-                          Maritial Status:{" "}
-                        </label>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            id="married"
-                            name="m_status"
-                            value="married"
-                          />
-                          <label className="form-check-label" htmlFor="married">
-                            Married
-                          </label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            id="unmarried"
-                            name="m_status"
-                            value="unmarried"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="unmarried"
-                          >
-                            Unmarried
-                          </label>
-                        </div>
-                      </div>
+
                       </div>
                     </fieldset>
                     <fieldset className="form-group card shadow ">

@@ -4,7 +4,7 @@ import ReportCard from "./vendors/others/ReportCard";
 import PieChartOD from "./vendors/utils/PieChart";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { setLoading, setOrder } from "../features/OrderReducer";
+import { fetchOrders, setLoading, setOrder } from "../features/OrderReducer";
 import { config } from "../config/config";
 import Layout from "./layout/Layout";
 import { Archive, BoxFill, CartPlusFill, TruckFrontFill } from "react-bootstrap-icons";
@@ -35,22 +35,27 @@ const Dashboard = () => {
       icon: <BoxFill className="text-gray-500 fs-1" />,
     },
   ];
-  
+
   const dispatch = useDispatch();
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        dispatch(setLoading());
-        const response = await axios.get(`${config.ordersApi}/orders`);
-        dispatch(setOrder(response.data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (orders.length === 0) {
-      getData();
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       dispatch(setLoading());
+  //       const response = await axios.get(`${config.ordersApi}/orders`);
+  //       dispatch(setOrder(response.data));
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   if (orders.length === 0) {
+  //     getData();
+  //   }
+  // }, [dispatch]);
+  useEffect(()=>{
+    if(orders.length === 0){
+      dispatch(fetchOrders())
     }
-  }, [dispatch]);
+  },[dispatch,orders])
   return (
     <Layout>
       <hgroup className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -87,7 +92,7 @@ const Dashboard = () => {
             </header>
             <main className="card-body">
               <div className="chart-pie d-flex justify-content-center">
-                <PieChartOD />
+                <PieChartOD  orders={orders}/>
               </div>
               <div className="mt-4 text-center small">
                 <span className="mr-2">
