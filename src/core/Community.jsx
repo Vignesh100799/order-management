@@ -4,11 +4,10 @@ import axios from 'axios';
 import { SendFill } from 'react-bootstrap-icons';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchFeedback, postFeedback, setFeedback } from '../features/UserReducer';
-import { FadeLoader, HashLoader, MoonLoader } from 'react-spinners';
+import { ftechFeedback, setFeedback } from '../features/UserReducer';
 
 const Community = () => {
-  const { feedback,loading } = useSelector((state) => state.users_info);
+  const { feedback } = useSelector((state) => state.users_info);
   const dispatch = useDispatch();
   const messagesContainerRef = useRef();
 
@@ -18,8 +17,8 @@ const Community = () => {
     },
     onSubmit: async (values) => {
       try {
-        // const response = await axios.post('https://65615e6adcd355c08323c948.mockapi.io/users', values);
-        dispatch(postFeedback(values));
+        const response = await axios.post('https://65615e6adcd355c08323c948.mockapi.io/users', values);
+        dispatch(setFeedback(response.data));
         formik.resetForm();
       } catch (error) {
         console.log(error);
@@ -29,7 +28,7 @@ const Community = () => {
 
   useEffect(() => {
     if (feedback.length === 0) {
-      dispatch(fetchFeedback());
+      dispatch(ftechFeedback());
     } else {
       messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
@@ -45,14 +44,12 @@ const Community = () => {
                 <h5 className='m-0 font-weight-bold text-orange'>Enjoy with our community</h5>
               </header>
               <main className='card-body overflow-y-auto' ref={messagesContainerRef}>
-                
-                {loading?
-              <HashLoader /> : (feedback.map((item) => (
-                <div key={item.id} className='mb-3 bg-grey'>
-                  {item.messages}
-                </div>
-              ))  )
-              }
+                {/* Use overflow-y-auto to enable vertical scrolling */}
+                {feedback.map((item) => (
+                  <div key={item.id} className='mb-3 bg-grey'>
+                    {item.messages}
+                  </div>
+                ))}
               </main>
               <footer className='card-footer p-0 py-3 m-0'>
                 <form onSubmit={formik.handleSubmit}>
@@ -68,9 +65,7 @@ const Community = () => {
                       />
                     </div>
                     <button className='col-lg-1 btn btn-success' disabled={formik.values.messages === ''} type='submit'>
-                      {
-                        loading? <FadeLoader color="#36d7b7" /> : <SendFill />
-                      }
+                      <SendFill />
                     </button>
                   </fieldset>
                 </form>

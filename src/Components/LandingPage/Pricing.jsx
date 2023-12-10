@@ -2,7 +2,7 @@
 import React, { useEffect} from "react";
 import PriceCard from "./PriceCard";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPricing } from "../../features/UserReducer";
+import { ftechPricing } from "../../features/UserReducer";
 import { HashLoader } from "react-spinners";
 
 
@@ -12,7 +12,7 @@ const Pricing = () => {
   const{pricing,loading} = useSelector(state=>state.users_info)
   useEffect(()=>{
     if(pricing.length === 0){
-      dispatch(fetchPricing())
+      dispatch(ftechPricing())
     }
   },[dispatch,pricing])
 

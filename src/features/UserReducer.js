@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { config } from "../config/config";
 
-export const fetchPricing = createAsyncThunk('userData/fetchPricing', async () => {
+export const ftechPricing = createAsyncThunk('userData/ftechPricing', async () => {
     try {
         const response = await axios.get(`${config.packageApi}/Package`)
         return response.data;
@@ -12,17 +12,9 @@ export const fetchPricing = createAsyncThunk('userData/fetchPricing', async () =
     }
 })
 
-export const fetchFeedback = createAsyncThunk('userData/fetchFeedback',async()=>{
+export const ftechFeedback = createAsyncThunk('userData/ftechFeedback',async()=>{
     try {
         const response = await axios.get('https://65615e6adcd355c08323c948.mockapi.io/users');
-        return response.data
-    } catch (error) {
-        console.error(error);
-    }
-})
-export const postFeedback = createAsyncThunk('userData/postFeedback',async(values)=>{
-    try {
-        const response = await axios.post('https://65615e6adcd355c08323c948.mockapi.io/users',values);
         return response.data
     } catch (error) {
         console.error(error);
@@ -49,36 +41,25 @@ export const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-        .addCase(fetchPricing.pending, (state) => {
+        .addCase(ftechPricing.pending, (state) => {
             state.loading = true;
         })
-        .addCase(fetchPricing.fulfilled, (state, action) => {
+        .addCase(ftechPricing.fulfilled, (state, action) => {
             state.loading = false;
             state.pricing = action.payload;
         })
-        .addCase(fetchPricing.rejected, (state, action) => {
+        .addCase(ftechPricing.rejected, (state, action) => {
             state.loading = false;
             state.pricing = action.error.message;
         })
-        .addCase(fetchFeedback.pending, (state) => {
+        .addCase(ftechFeedback.pending, (state) => {
             state.loading = true;
         })
-        .addCase(fetchFeedback.fulfilled, (state, action) => {
+        .addCase(ftechFeedback.fulfilled, (state, action) => {
             state.loading = false;
             state.feedback = action.payload;
         })
-        .addCase(fetchFeedback.rejected, (state, action) => {
-            state.loading = false;
-            state.feedback = action.error.message;
-        })
-        .addCase(postFeedback.pending, (state) => {
-            state.loading = true;
-        })
-        .addCase(postFeedback.fulfilled, (state, action) => {
-            state.feedback = [...state.feedback, action.payload];
-            state.loading = false;
-        })
-        .addCase(postFeedback.rejected, (state, action) => {
+        .addCase(ftechFeedback.rejected, (state, action) => {
             state.loading = false;
             state.feedback = action.error.message;
         })
