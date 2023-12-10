@@ -2,7 +2,7 @@ import React from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { EditvalidationSchema } from "./Schema/validationSchema";
+import { newFormValidationSchema } from "./Schema/validationSchema";
 import { useDispatch } from "react-redux";
 
 import axios from "axios";
@@ -18,13 +18,13 @@ const CreateOrder = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      orderId: "",
-      orderNumber: "",
+     
+   
       status: "",
-      item: "",
+     
       customerName: "",
       shippingService: "",
-      trackingCode: "",
+      
       address:{
         street: "",
         town: "",
@@ -33,11 +33,13 @@ const CreateOrder = () => {
         zipcode: "",
        }
     },
-    validationSchema: EditvalidationSchema,
+    validationSchema: newFormValidationSchema,
     onSubmit: async (values) => { 
+      console.log(values)
       try {
         const response = await axios.post(`${config.ordersApi}/orders`, values);
         dispatch(createOrder(response.data));
+
         navigate("/order");
       } catch (error) {
         console.error(error);
@@ -57,7 +59,7 @@ const CreateOrder = () => {
           Back To Oder
         </Link>
       </hgroup>
-      <OrderForm formik={formik} title="New Order" buttonText="Submit"/>
+      <NewForm formik={formik} title="New Order" buttonText="Submit"/>
     </Layout>
   );
 };

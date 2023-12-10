@@ -16,7 +16,7 @@ const OrderForm = ({ formik, title, buttonText}) => {
           <fieldset>
             <main className="row">
               {
-                location.pathname !== '/create-order' && (userRole === 'admin' && (
+                (userRole === 'admin' && (
                   <>
                     <section className="col-lg-4 mb-3">
                       <label htmlFor="orderId" className="form-label">
@@ -250,10 +250,9 @@ const OrderForm = ({ formik, title, buttonText}) => {
                   id="status"
                 >
                   <optgroup label="status">
-                    <option value="">choose</option>
-                    <option value="order" disabled={location.pathname !== '/create-order'}>order</option>
+                    <option value="">choose</option>                    
                     <option value="cancelled">cancelled</option>
-                    {location.pathname !== '/create-order' && userRole === 'admin' && (
+                    {userRole === 'admin' && (
                       <>
                         <option value="production">production</option>
                         <option value="delivered">delivered</option>
