@@ -12,32 +12,19 @@ export const ftechPricing = createAsyncThunk('userData/ftechPricing', async () =
     }
 })
 
-export const ftechFeedback = createAsyncThunk('userData/ftechFeedback',async()=>{
-    try {
-        const response = await axios.get('https://65615e6adcd355c08323c948.mockapi.io/users');
-        return response.data
-    } catch (error) {
-        console.error(error);
-    }
-})
-
 export const userSlice = createSlice({
     name: 'users_info', 
     initialState: {
         user:{},
         pricing: [],
-        feedback:[],
         loading: false
     },
     reducers:{
         setUser:(state,action) =>{
             state.user = action.payload
-            return state;
-        },
-        setFeedback:(state,action)=>{
-            state.feedback = [...state.feedback,action.payload]
-            return state;
+            return state
         }
+
     },
     extraReducers: (builder) => {
         builder
@@ -51,20 +38,9 @@ export const userSlice = createSlice({
         .addCase(ftechPricing.rejected, (state, action) => {
             state.loading = false;
             state.pricing = action.error.message;
-        })
-        .addCase(ftechFeedback.pending, (state) => {
-            state.loading = true;
-        })
-        .addCase(ftechFeedback.fulfilled, (state, action) => {
-            state.loading = false;
-            state.feedback = action.payload;
-        })
-        .addCase(ftechFeedback.rejected, (state, action) => {
-            state.loading = false;
-            state.feedback = action.error.message;
-        })
+        });
     }
 });
 
-export const {setUser,setFeedback} = userSlice.actions
+export const {setUser} = userSlice.actions
 export default userSlice.reducer;
