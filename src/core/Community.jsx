@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from './layout/Layout';
 import axios from 'axios';
-import { SendFill } from 'react-bootstrap-icons';
 
 const Community = () => {
   const [feedback, setFeedback] = useState([]);
@@ -22,10 +21,12 @@ const Community = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await axios.post('https://65615e6adcd355c08323c948.mockapi.io/users', {
         messages: newMessage,
       });
+
       setFeedback([...feedback, response.data]);
       setNewMessage('');
     } catch (error) {
@@ -45,23 +46,21 @@ const Community = () => {
               <main className='card-body overflow-y-auto'>
                 {/* Use overflow-y-auto to enable vertical scrolling */}
                 {feedback.map((item) => (
-                  <div key={item.id} className='mb-3 bg-grey'>
+                  <div key={item.id} className='mb-3'>
                     {item.messages}
                   </div>
                 ))}
               </main>
-              <footer className='card-footer p-0 py-1 m-0'>
+              <footer className='card-footer'>
                 <form onSubmit={handleSubmit}>
-                  <fieldset className='form-group row justify-content-center m-0'>
+                  <fieldset className='form-group row justify-content-center '>
                     <input
                       type='text'
                       className='form-control col-lg-6'
                       value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
                     />
-                    <button className='col-lg-1 btn btn-success'>
-                      <SendFill />
-                    </button>
+                    <input type='submit' className='btn btn-primary col-lg-3' value={'Submit'} />
                   </fieldset>
                 </form>
               </footer>
