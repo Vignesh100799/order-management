@@ -1,7 +1,7 @@
 export const customerData = [
     {
       customerName: 'Elena Rodriguez',
-      status: 'standard',
+      status:'order',
       shippingService: 'priority',
       address: {
         street: 'east st',
@@ -13,7 +13,7 @@ export const customerData = [
     },
     {
       customerName: 'YIndiai Tanaka',
-      status: 'express',
+      status:'order',
       shippingService: 'standard',
       address: {
         street: 'main st',
@@ -25,7 +25,7 @@ export const customerData = [
     },
     {
       customerName: 'Anna Müller',
-      status: 'priority',
+      status:'order',
       shippingService: 'express',
       address: {
         street: 'berlin st',
@@ -37,7 +37,7 @@ export const customerData = [
     },
     {
       customerName: 'Carlos Silva',
-      status: 'express',
+      status:'order',
       shippingService: 'priority',
       address: {
         street: 'copacabana st',
@@ -49,7 +49,7 @@ export const customerData = [
     },
     {
       customerName: 'Mei Chen',
-      status: 'standard',
+      status:'order',
       shippingService: 'express',
       address: {
         street: 'pudong st',
@@ -61,7 +61,7 @@ export const customerData = [
     },
     {
       customerName: 'Ivan Petrov',
-      status: 'priority',
+      status:'order',
       shippingService: 'standard',
       address: {
         street: 'red square st',
@@ -73,7 +73,7 @@ export const customerData = [
     },
     {
       customerName: 'Sophie Dupont',
-      status: 'express',
+      status:'order',
       shippingService: 'priority',
       address: {
         street: 'champs-elysees st',
@@ -85,7 +85,7 @@ export const customerData = [
     },
     {
         customerName: 'John Joe',
-        status: 'standard',
+        status:'order',
         shippingService: 'express',
         address: {
           street: 'north st',
@@ -97,7 +97,7 @@ export const customerData = [
       },
       {
         customerName: 'Alice Johnson',
-        status: 'priority',
+        status:'order',
         shippingService: 'standard',
         address: {
           street: 'west st',
@@ -109,7 +109,7 @@ export const customerData = [
       },
       {
         customerName: 'Bob Smith',
-        status: 'express',
+        status:'order',
         shippingService: 'priority',
         address: {
           street: 'south st',
@@ -121,7 +121,7 @@ export const customerData = [
       },
       {
         customerName: 'John Joe',
-        status: 'standard',
+        status:'order',
         shippingService: 'express',
         address: {
           street: 'north st',
@@ -133,7 +133,7 @@ export const customerData = [
       },
       {
         customerName: 'Alice Johnson',
-        status: 'priority',
+        status:'order',
         shippingService: 'standard',
         address: {
           street: 'west st',
@@ -145,7 +145,7 @@ export const customerData = [
       },
       {
         customerName: 'Bob Smith',
-        status: 'express',
+        status:'order',
         shippingService: 'priority',
         address: {
           street: 'south st',
@@ -157,7 +157,7 @@ export const customerData = [
       },
     {
       customerName: 'Elena Rodriguez',
-      status: 'standard',
+      status:'order',
       shippingService: 'priority',
       address: {
         street: 'east st',
@@ -169,7 +169,7 @@ export const customerData = [
     },
     {
       customerName: 'YIndiai Tanaka',
-      status: 'express',
+      status:'order',
       shippingService: 'standard',
       address: {
         street: 'main st',
@@ -181,7 +181,7 @@ export const customerData = [
     },
     {
       customerName: 'Anna Müller',
-      status: 'priority',
+      status:'order',
       shippingService: 'express',
       address: {
         street: 'berlin st',
@@ -193,7 +193,7 @@ export const customerData = [
     },
     {
       customerName: 'Carlos Silva',
-      status: 'express',
+      status:'order',
       shippingService: 'priority',
       address: {
         street: 'copacabana st',
@@ -205,7 +205,7 @@ export const customerData = [
     },
     {
       customerName: 'Mei Chen',
-      status: 'standard',
+      status:'order',
       shippingService: 'express',
       address: {
         street: 'pudong st',
@@ -217,7 +217,7 @@ export const customerData = [
     },
     {
       customerName: 'Ivan Petrov',
-      status: 'priority',
+      status:'order',
       shippingService: 'standard',
       address: {
         street: 'red square st',
@@ -229,7 +229,7 @@ export const customerData = [
     },
     {
       customerName: 'Sophie Dupont',
-      status: 'express',
+      status:'order',
       shippingService: 'priority',
       address: {
         street: 'champs-elysees st',
@@ -241,7 +241,7 @@ export const customerData = [
     },
     {
         customerName: 'John Joe',
-        status: 'standard',
+        status:'order',
         shippingService: 'express',
         address: {
           street: 'north st',
@@ -253,7 +253,7 @@ export const customerData = [
       },
       {
         customerName: 'Alice Johnson',
-        status: 'priority',
+        status:'order',
         shippingService: 'standard',
         address: {
           street: 'west st',
@@ -265,7 +265,7 @@ export const customerData = [
       },
       {
         customerName: 'Bob Smith',
-        status: 'express',
+        status:'order',
         shippingService: 'priority',
         address: {
           street: 'south st',
@@ -277,7 +277,7 @@ export const customerData = [
       },
       {
         customerName: 'John Joe',
-        status: 'standard',
+        status:'order',
         shippingService: 'express',
         address: {
           street: 'north st',
@@ -289,7 +289,7 @@ export const customerData = [
       },
       {
         customerName: 'Alice Johnson',
-        status: 'priority',
+        status:'order',
         shippingService: 'standard',
         address: {
           street: 'west st',
@@ -301,7 +301,7 @@ export const customerData = [
       },
       {
         customerName: 'Bob Smith',
-        status: 'express',
+        status:'order',
         shippingService: 'priority',
         address: {
           street: 'south st',
@@ -313,7 +313,7 @@ export const customerData = [
       },
       {
         customerName: 'Jane Doe',
-        status: 'standard',
+        status:'order',
         shippingService: 'express',
         address: {
           street: 'west st',
@@ -325,7 +325,7 @@ export const customerData = [
       },
       {
         customerName: 'Miguel Rodriguez',
-        status: 'express',
+        status:'order',
         shippingService: 'standard',
         address: {
           street: 'calle principal',
@@ -337,7 +337,7 @@ export const customerData = [
       },
       {
         customerName: 'Sakura Tanaka',
-        status: 'priority',
+        status:'order',
         shippingService: 'express',
         address: {
           street: 'kyoto st',
@@ -349,7 +349,7 @@ export const customerData = [
       },
       {
         customerName: 'Hans Müller',
-        status: 'express',
+        status:'order',
         shippingService: 'priority',
         address: {
           street: 'hamburg st',

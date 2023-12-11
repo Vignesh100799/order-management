@@ -67,7 +67,7 @@ const Order = () => {
       {
         accessorKey: "actions",
         header: "Actions",
-        Cell: ({ row }) => (<Actions row={row} handleDeleteOrder={handleDeleteOrder} />),
+        Cell: ({ row }) => (<Actions row={row}  />),
       },
     ],
     [handleDeleteOrder]
