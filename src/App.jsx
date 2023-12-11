@@ -5,17 +5,18 @@ import ForgotPassword from "./Components/User/ForgotPassword";
 import Register from "./Components/User/Register";
 import Dashboard from "./core/Dashboard";
 import Frontpage from "./Components/LandingPage/Frontpage";
-import Admin from "./core/Admin";
+import Admin from "./core/admin/Admin";
 import Listing from "./core/Listing";
 import Order from "./core/Order";
 import Settings from "./core/Settings";
 import Community from "./core/Community";
-import Tutorial from "./core/Tutorial";
+
 import ViewOrder from "./core/vendors/crud/ViewOrder";
 import EditOrder from "./core/vendors/crud/EditOrder";
 import CreateOrder from "./core/vendors/crud/CreateOrder";
 import { ToastContainer } from "react-toastify";
 import { PrivateRoute } from "./Components/User/Auth/ProtectedRoute";
+import Support from "./core/Support";
 // import EventForm from './EventForm';
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
             <Route path="/order" element={<Order />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/community" element={<Community />} />
-            <Route path="/tutorial" element={<Tutorial />} />
+            <Route path="/support" element={<Support />} />
             <Route path="/create-order" element={<CreateOrder />} />
             <Route path="/view-order/:id" element={<ViewOrder />} />
             <Route path="/edit-order/:id" element={<EditOrder />} />

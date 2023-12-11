@@ -8,7 +8,23 @@ export const ftechPricing = createAsyncThunk('userData/ftechPricing', async () =
         return response.data;
     } catch (error) {
         console.error(error);
-        throw error;  // Make sure to rethrow the error after logging it
+        throw error;  
+    }
+})
+export const ftechFeedback = createAsyncThunk('userData/ftechFeedback',async()=>{
+    try {
+        const response = await axios.get(`${config.feedbackApi}/feedback`);
+        return response.data
+    } catch (error) {
+        console.error(error);
+    }
+})
+export const postFeedback = createAsyncThunk('userData/postFeedback',async(values)=>{
+    try {
+        const response = await axios.post(`${config.feedbackApi}/feedback`,values);
+        return response.data
+    } catch (error) {
+        console.error(error);
     }
 })
 
@@ -17,12 +33,19 @@ export const userSlice = createSlice({
     initialState: {
         user:{},
         pricing: [],
-        loading: false
+        loading: false,
+        feedback:[]
     },
     reducers:{
         setUser:(state,action) =>{
+            state.loading = false;
             state.user = action.payload
             return state
+        },
+        setFeedback:(state,action)=>{
+            state.loading = false;
+            state.feedback = [...state.feedback,action.payload]
+            return state;
         }
 
     },
@@ -38,9 +61,31 @@ export const userSlice = createSlice({
         .addCase(ftechPricing.rejected, (state, action) => {
             state.loading = false;
             state.pricing = action.error.message;
-        });
+        })
+        .addCase(ftechFeedback.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(ftechFeedback.fulfilled, (state, action) => {
+            state.loading = false;
+            state.feedback = action.payload;
+        })
+        .addCase(ftechFeedback.rejected, (state, action) => {
+            state.loading = false;
+            state.feedback = action.error.message;
+        })
+        .addCase(postFeedback.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(postFeedback.fulfilled, (state, action) => {
+            state.feedback = [...state.feedback, action.payload]; 
+            state.loading = false;
+        })
+        .addCase(postFeedback.rejected, (state, action) => {
+            state.loading = false;
+            state.feedback = action.error.message;
+        })
     }
 });
 
-export const {setUser} = userSlice.actions
+export const {setUser,setFeedback} = userSlice.actions
 export default userSlice.reducer;

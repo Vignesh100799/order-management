@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import profileLogo from "../../assets/img/undraw_profile.svg";
 import messageLogo1 from "../../assets/img/undraw_profile_1.svg";
 import messageLogo2 from "../../assets/img/undraw_profile_2.svg";
 import messageLogo3 from "../../assets/img/undraw_profile_3.svg";
 import { useDispatch, useSelector } from "react-redux";
-// import { setSideBarToggle, sideBarToggle } from "../../features/FunctionalReducer";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../Components/User/Auth/authService";
 import "./styles/navbar.css";
 import { setUser } from "../../features/UserReducer";
 import { setSideBarToggle, sideBarToggle } from "../../features/FunctionalReducer";
+import { Avatar } from "@mui/material";
+import { deepOrange } from "@mui/material/colors";
+import { ClipLoader } from "react-spinners";
 
 const TobBar = () => {
   const dispatch = useDispatch();
@@ -221,11 +222,17 @@ const TobBar = () => {
             <span className="mr-2 d-none d-lg-inline text-gray-600 small">
               {user.firstname}
             </span>
-            <img
-              className="img-profile rounded-circle"
-              src={profileLogo}
-              alt="profile"
-            />
+            {user && user.firstname ? (
+                      <React.Fragment>
+                        <Avatar sx={{ bgcolor: deepOrange[500] }}>
+                          {user.firstname.split("")[0]}
+                        </Avatar>
+                        
+                      </React.Fragment>
+                    ) : (
+                     
+                      <ClipLoader size={20} />
+                    )}
           </a>
           {/* Dropdown - User Information */}
           <div

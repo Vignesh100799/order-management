@@ -1,19 +1,19 @@
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteOrder, fetchOrders} from "../features/OrderReducer";
+import { deleteOrder, fetchOrders} from "../../features/OrderReducer";
 import { HashLoader } from "react-spinners";
 import {Plus} from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { MaterialReactTable } from "material-react-table";
 import axios from "axios";
-import { config } from "../config/config";
-import Layout from "./layout/Layout";
-import Actions from "./admin/components/Action";
-import StatusBadge from "./admin/components/Status";
+import { config } from "../../config/config";
+import Layout from "../layout/Layout";
+import Actions from "./components/Action";
+import StatusBadge from "./components/Status";
+import Export from "./components/Export";
+import ServiceBadge from "./components/ServiceBadge";
 
-import ServiceBadge from "./admin/components/ServiceBadge";
-
-const Order = () => {
+const Admin = () => {
   const dispatch = useDispatch();
 
   const { orders, loading} = useSelector((state) => state.order_list);
@@ -73,6 +73,9 @@ const Order = () => {
     [handleDeleteOrder]
   );
 
+
+  const handleClick = ({ table }) => <Export table={table} columns={columns} />
+
   return (
     <Layout>
       <hgroup className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -97,7 +100,8 @@ const Order = () => {
             <HashLoader color="#DB551B" className="text-center" />
           ) : (
             <MaterialReactTable
-            columns={columns}
+              renderTopToolbarCustomActions={handleClick}
+              columns={columns}
               data={orders}
               enableGlobalFilterModes
               enableRowNumbers={true}
@@ -128,4 +132,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default Admin;

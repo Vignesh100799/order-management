@@ -1,12 +1,5 @@
 
 export const mainTable = [
-    // {
-    //   accessorKey: 'sno',  // New accessorKey for S.NO
-    //   header: 'S.NO',
-    //   Cell: ({ row }) => (
-    //     <span>{row.index + 1}</span>
-    //   ),
-    // },
     {
       accessorKey: 'orderId',
       header: 'Order Id',
@@ -15,10 +8,6 @@ export const mainTable = [
       accessorKey: 'orderNumber',
       header: 'Order Number',
     },
-    // {
-    //   accessorKey: 'status',
-    //   header: 'Status',
-    // },
     {
       accessorKey: 'item',
       header: 'Item',

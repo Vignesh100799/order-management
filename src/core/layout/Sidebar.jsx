@@ -30,12 +30,12 @@ const Sidebar = () => {
   useEffect(() => {
     window.addEventListener("resize", function () {
       if (window.innerWidth < 496) {
-        setSideBarToggle(true);
+        dispatch(setSideBarToggle(true));
       } else {
-        setSideBarToggle(false);
+        dispatch(setSideBarToggle(false));
       }
     });
-  }, []);
+  }, [dispatch]);
 
 
   const navItems = [
@@ -48,7 +48,7 @@ const Sidebar = () => {
     ] : []),
     { path: "/settings", icon: <SettingIcon />, text: "Setting" },
     { path: "/community", icon: <CommunityIcon />, text: "Community" },
-    { path: "/tutorial", icon: <TutoIcon />, text: "Support" },
+    { path: "/support", icon: <TutoIcon />, text: "Support" },
   ];
 
   return (

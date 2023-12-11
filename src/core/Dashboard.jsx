@@ -3,9 +3,9 @@ import LineChartOD from "./vendors/utils/LineChart";
 import ReportCard from "./vendors/others/ReportCard";
 import PieChartOD from "./vendors/utils/PieChart";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { fetchOrders, setLoading, setOrder } from "../features/OrderReducer";
-import { config } from "../config/config";
+
+import { fetchOrders} from "../features/OrderReducer";
+
 import Layout from "./layout/Layout";
 import { Archive, BoxFill, CartPlusFill, TruckFrontFill } from "react-bootstrap-icons";
 
@@ -37,20 +37,7 @@ const Dashboard = () => {
   ];
 
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       dispatch(setLoading());
-  //       const response = await axios.get(`${config.ordersApi}/orders`);
-  //       dispatch(setOrder(response.data));
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   if (orders.length === 0) {
-  //     getData();
-  //   }
-  // }, [dispatch]);
+
   useEffect(()=>{
     if(orders.length === 0){
       dispatch(fetchOrders())
@@ -60,8 +47,8 @@ const Dashboard = () => {
     <Layout>
       <hgroup className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
-        <h3>Welcome, {`${user.firstname} ${user.lastname}`}</h3>
-        <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i className="fas fa-download fa-sm text-white-50" /> Generate Report</a>
+        <h3 className="h4 ">Welcome, {`${user.firstname} ${user.lastname}`}</h3>
+        <a href="..." className="d-none d-sm-inline-block btn bg-orange text-white shadow-sm"><i className="bi bi-plus" /> Create Order</a>
       </hgroup>
       <section className="row">
         {dash.map((report, index) => (

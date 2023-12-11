@@ -1,73 +1,46 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo} from "react";
 import { Link } from "react-router-dom";
-import { CircleFill, Plus } from "react-bootstrap-icons";
+import { Plus } from "react-bootstrap-icons";
 import { customerData } from "./vendors/Table/data";
-import { listingTable } from "./vendors/Table/listingTable";
 import { MaterialReactTable } from "material-react-table";
 import Layout from "./layout/Layout";
+import StatusBadge from "./admin/components/Status";
+import ServiceBadge from "./admin/components/ServiceBadge";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchInput } from "../features/FunctionalReducer";
 
 const Listing = () => {
+  const {searchInput} = useSelector(state=>state.funactionality)
+  const dispatch = useDispatch()
   const uniqueCities = [
     ...new Set(customerData.map((item) => item.address.city)),
   ];
-  const [searchInput, setSearchInput] = useState("");
+  
 
   const filteredCities = uniqueCities.filter((city) =>
     city.toLowerCase().includes(searchInput.toLowerCase())
   );
 
-  const handleSearch = (e) => setSearchInput(e.target.value);
+  const handleSearch = (e) => dispatch(setSearchInput(e.target.value)) ;
 
   const columns = useMemo(() => [
-    ...listingTable,
+    {
+      accessorKey: 'customerName',
+      header: 'Customer Name',
+    },
+    {
+      accessorKey: 'address.zipCode',
+      header: 'Zip Code',
+    },
     {
       accessorKey: "status",
       header: "Status",
-      Cell: ({ row }) => {
-        const { status } = row.original;
-        return (
-          <div
-            className={`badge border p-1 ${
-              status === "cancelled"
-                ? "border-danger bg-danger-subtle text-danger"
-                : status === "order"
-                ? "border-primary bg-primary-subtle text-primary"
-                : status === "production"
-                ? "border-warning bg-warning-subtle text-warning"
-                : status === "delivered"
-                ? "border-success bg-success-subtle text-success"
-                : "border-secondary bg-secondary-subtle text-secondary"
-            }`}
-          >
-            {status}
-          </div>
-        );
-      },
+      Cell: ({ row }) => <StatusBadge status={row.original.status} />
     },
     {
       accessorKey: "shippingService",
       header: "Service",
-      Cell: ({ row }) => {
-        const { shippingService } = row.original;
-
-        return (
-          <div className={`badge`}>
-            <span>
-              {shippingService === "express" ? (
-                <CircleFill className="text-danger small" />
-              ) : shippingService === "priority" ? (
-                <CircleFill className="text-info small" />
-              ) : shippingService === "standard" ? (
-                <CircleFill className="text-warning small" />
-              ) : (
-                <CircleFill className="text-secondarry small" />
-              )}
-            </span>
-
-            <span className="ml-1 text-black">{shippingService}</span>
-          </div>
-        );
-      },
+      Cell: ({ row }) => <ServiceBadge shippingService={row.original.shippingService} />
     },
   ]);
 
@@ -75,7 +48,7 @@ const Listing = () => {
     <Layout>
       <article className="d-sm-flex align-items-center justify-content-between mb-4">
         <section className="col-md-4">
-          <h1 className="h3 mb-0 text-gray-800">Orders</h1>
+          <h1 className="h3 mb-0 text-gray-800">Listing</h1>
         </section>
         <section className="col-md-4">
           <input
@@ -124,10 +97,9 @@ const Listing = () => {
                   },
                 }}
                 muiSearchTextFieldProps={{
-                  placeholder: `Search ${
-                    customerData.filter((item) => item.address.city === city)
+                  placeholder: `Search ${customerData.filter((item) => item.address.city === city)
                       .length
-                  } rows`,
+                    } rows`,
                   sx: { minWidth: "300px" },
                   variant: "outlined",
                 }}
