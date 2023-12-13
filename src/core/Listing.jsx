@@ -1,4 +1,4 @@
-import React, { useMemo} from "react";
+import React, { useEffect, useMemo} from "react";
 import { Link } from "react-router-dom";
 import { Plus } from "react-bootstrap-icons";
 import { customerData } from "./vendors/Table/data";
@@ -8,12 +8,19 @@ import StatusBadge from "./admin/components/Status";
 import ServiceBadge from "./admin/components/ServiceBadge";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchInput } from "../features/FunctionalReducer";
+import { fetchOrders } from "../features/OrderReducer";
 
 const Listing = () => {
   const {searchInput} = useSelector(state=>state.funactionality)
+  const {orders} = useSelector(state=>state.order_list)
   const dispatch = useDispatch()
+  useEffect(()=>{
+    if(orders.length === 0) {
+      dispatch(fetchOrders())
+    }
+  },[dispatch,orders.length])
   const uniqueCities = [
-    ...new Set(customerData.map((item) => item.address.city)),
+    ...new Set(orders.map((item) => item.address.city)),
   ];
   
 
@@ -29,7 +36,7 @@ const Listing = () => {
       header: 'Customer Name',
     },
     {
-      accessorKey: 'address.zipCode',
+      accessorKey: 'address.zipcode',
       header: 'Zip Code',
     },
     {
@@ -79,7 +86,7 @@ const Listing = () => {
               </header>
               <MaterialReactTable
                 columns={columns}
-                data={customerData.filter((item) => item.address.city === city)}
+                data={orders.filter((item) => item.address.city === city)}
                 enableRowNumbers={true}
                 enableColumnActions={false}
                 enableColumnFilters={false}

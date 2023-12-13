@@ -130,7 +130,7 @@ const Register = () => {
                       {steps[activeStep].fields.map((field) => (
                         <section className="form-group" key={field}>
                           <input
-                            type={(field === 'password' || field === 'cpassword') ? 'password' : 'text'}
+                            type={(field === 'password' || field === 'cpassword') ? 'password' :(field === 'mobileNo' || field === 'zipcode') ? 'number' : 'text'}
                             className={`form-control form-control-user ${formik.touched[field] && formik.errors[field]
                                 ? "is-invalid"
                                 : ""

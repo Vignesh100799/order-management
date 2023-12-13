@@ -82,7 +82,7 @@ const ContactUs = () => {
                       : ""
                   }`}
                   id="phoneNo"
-                  type="tel"
+                  type="number"
                   placeholder="(123) 456-7890"
                   name="phoneNo"
                   value={formik.values.phoneNo}
@@ -120,10 +120,7 @@ const ContactUs = () => {
 
               <div className="d-grid">
                 <button
-                  className={`btn btn-success btn-lg ${
-                    formik.isValid ? "" : "disabled"
-                  }`}
-                  id="submitButton"
+                  className="btn btn-success btn-lg"
                   type="submit"
                 >
                   Submit

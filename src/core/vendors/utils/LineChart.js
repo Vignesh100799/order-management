@@ -18,7 +18,11 @@ const data = [
   { name: "May", uv: 1890 },
   { name: "Jun", uv: 2390 },
   { name: "Jul", uv: 3490 },
-  { name: "Jul", uv: 3490 },
+  { name: "Aug", uv: 2390 },
+  { name: "Sep", uv: 3490 },
+  { name: "Oct", uv: 3490 },
+  { name: "Nov", uv: 1890 },
+  { name: "Dec", uv: 3490 },
 ];
 
 export default function LineChartOD() {

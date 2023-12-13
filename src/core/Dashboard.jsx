@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOrders} from "../features/OrderReducer";
 
 import Layout from "./layout/Layout";
-import { Archive, BoxFill, CartPlusFill, TruckFrontFill } from "react-bootstrap-icons";
+import { Archive, BoxFill, CartPlusFill, Shop, TruckFrontFill, XSquare } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
 
@@ -32,7 +33,17 @@ const Dashboard = () => {
     {
       title: "production",
       value: orders.filter((order) => order.status === "production").length,
+      icon: <Shop className="text-gray-500 fs-1" />,
+    },
+    {
+      title: "Return",
+      value: orders.filter((order) => order.status === "Return").length,
       icon: <BoxFill className="text-gray-500 fs-1" />,
+    },
+    {
+      title: "Cancelled",
+      value: orders.filter((order) => order.status === "cancelled").length,
+      icon: <XSquare className="text-gray-500 fs-1" />,
     },
   ];
 
@@ -44,11 +55,20 @@ const Dashboard = () => {
     }
   },[dispatch,orders])
   return (
-    <Layout>
+    <Layout >
       <hgroup className="d-sm-flex align-items-center justify-content-between mb-4">
+        <div className="col-md-4">
+
         <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
+        </div>
+        <div className="col-md-4 text-center">
+
         <h3 className="h4 ">Welcome, {`${user.firstname} ${user.lastname}`}</h3>
-        <a href="..." className="d-none d-sm-inline-block btn bg-orange text-white shadow-sm"><i className="bi bi-plus" /> Create Order</a>
+        </div>
+        <div className="col-md-4 text-end">
+
+        <Link to={'/create-order'} className="d-none d-sm-inline-block btn bg-orange text-white shadow-sm"><i className="bi bi-plus" /> Create Order</Link>
+        </div>
       </hgroup>
       <section className="row">
         {dash.map((report, index) => (
@@ -57,7 +77,7 @@ const Dashboard = () => {
       </section>
       <article className="row ">
         <section className="col-xl-8 col-lg-7 d-none d-md-block">
-          <div className="card shadow mb-4 ">
+          <div className="card shadow">
             <header className="card-header py-3 text-center">
               <h6 className="m-0 font-weight-bold text-orange">
                 Earnings Overview

@@ -23,7 +23,7 @@ const OrderForm = ({ formik, title, buttonText}) => {
                         Order ID
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         className={`form-control ${formik.touched.orderId && formik.errors.orderId
                             ? "is-invalid"
                             : ""
@@ -45,7 +45,7 @@ const OrderForm = ({ formik, title, buttonText}) => {
                         Order Number
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         className={`form-control ${formik.touched.orderNumber && formik.errors.orderNumber
                             ? "is-invalid"
                             : ""
@@ -67,7 +67,7 @@ const OrderForm = ({ formik, title, buttonText}) => {
                         Item
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         className={`form-control ${formik.touched.item && formik.errors.item
                             ? "is-invalid"
                             : ""
@@ -87,7 +87,7 @@ const OrderForm = ({ formik, title, buttonText}) => {
                         Tracking Code
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         className={`form-control ${formik.touched.trackingCode && formik.errors.customerName
                             ? "is-invalid"
                             : ""

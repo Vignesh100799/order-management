@@ -68,6 +68,7 @@ const Admin = () => {
         accessorKey: "actions",
         header: "Actions",
         Cell: ({ row }) => (<Actions row={row} handleDeleteOrder={handleDeleteOrder} />),
+        export: false,
       },
     ],
     [handleDeleteOrder]
@@ -106,7 +107,9 @@ const Admin = () => {
               enableGlobalFilterModes
               enableRowNumbers={true}
               initialState={{
+                density: "compact",
                 showGlobalFilter: true,
+                
               }}
               
               muiSearchTextFieldProps={{

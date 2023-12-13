@@ -73,10 +73,9 @@ const EditOrder = () => {
         <h1 className="h3 mb-0 text-gray-800">Orders</h1>
         <Link
           to={"/order"}
-          className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+          className="d-none d-sm-inline-block btn btn-sm bg-orange text-white shadow-sm"
         >
-          <i className="fas fa-download fa-sm text-white-50" />
-          Back To Oder
+          <i class="bi bi-arrow-left mr-2"></i>Back To Table
         </Link>
       </hgroup>
       <OrderForm formik={formik} title="Edit Order" buttonText="Update" />

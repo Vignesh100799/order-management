@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { viewOrder } from "../../../features/OrderReducer";
 import axios from "axios";
@@ -29,12 +29,12 @@ const ViewOrder = () => {
   }, [dispatch, params.id]);
   return (
     <Layout>
-      <div className="d-sm-flex align-items-center justify-content-between mb-4">
+      <div className="d-sm-flex align-items-center justify-content-between mb-2">
         <h1 className="h3 mb-0 text-gray-800">Order </h1>
       </div>
       <div className="row justify-content-center">
         <div className="col-xl-8 col-lg-7">
-          <div className="card shadow mb-4">
+          <div className="card shadow">
             <div className="card-header py-3 text-center">
               <h6 className="m-0 font-weight-bold text-orange">
                 Order Overview
@@ -89,6 +89,9 @@ const ViewOrder = () => {
                  </div>)
                   )}
               </div>
+            </div>
+            <div className="card-footer text-center">
+                  <Link to={'/order'} className="btn bg-orange text-white"><i class="bi bi-arrow-left mr-2"></i>Back To Table</Link>
             </div>
           </div>
         </div>

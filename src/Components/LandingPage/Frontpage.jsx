@@ -7,6 +7,7 @@ import Testimonials from './Testimonials'
 import ContactUs from './ContactUs'
 import Footer from './Footer'
 import '../../assets/css/Frontpage.css'
+import About from './About'
 const Frontpage = () => {
   return (
     <div className='container-fulid'>

@@ -25,24 +25,24 @@ const Topbar = () => {
         <nav className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#!">
+              <Link className="nav-link active" aria-current="page" href="#!">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#!">
+              <Link className="nav-link" href="#!">
                 About
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#!">
+              <Link className="nav-link" href="#!">
                 Contact
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#!">
+              <Link className="nav-link" to={'/contact'}>
                 Services
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to={"/login"}>

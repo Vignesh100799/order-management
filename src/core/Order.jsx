@@ -32,6 +32,10 @@ const Order = () => {
       console.error("Error deleting order:", error);
     }
   };
+  const reversedOrders = useMemo(
+    () => (orders ? [...orders].reverse() : []),
+    [orders]
+  );
   const columns = useMemo(
     () => [
       {
@@ -98,10 +102,11 @@ const Order = () => {
           ) : (
             <MaterialReactTable
             columns={columns}
-              data={orders}
+              data={reversedOrders}
               enableGlobalFilterModes
               enableRowNumbers={true}
               initialState={{
+                density: "compact",
                 showGlobalFilter: true,
               }}
               
