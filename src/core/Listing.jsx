@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo} from "react";
 import { Link } from "react-router-dom";
 import { Plus } from "react-bootstrap-icons";
-import { customerData } from "./vendors/Table/data";
+// import { customerData } from "./vendors/Table/data";
 import { MaterialReactTable } from "material-react-table";
 import Layout from "./layout/Layout";
 import StatusBadge from "./admin/components/Status";
@@ -14,7 +14,7 @@ const Listing = () => {
   const {searchInput} = useSelector(state=>state.funactionality)
   const {orders} = useSelector(state=>state.order_list)
   const dispatch = useDispatch()
-  useEffect(()=>{
+  useEffect(()=>{ 
     if(orders.length === 0) {
       dispatch(fetchOrders())
     }
@@ -104,7 +104,7 @@ const Listing = () => {
                   },
                 }}
                 muiSearchTextFieldProps={{
-                  placeholder: `Search ${customerData.filter((item) => item.address.city === city)
+                  placeholder: `Search ${orders.filter((item) => item.address.city === city)
                       .length
                     } rows`,
                   sx: { minWidth: "300px" },

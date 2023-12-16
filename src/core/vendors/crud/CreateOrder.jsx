@@ -18,10 +18,7 @@ const CreateOrder = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-     
-   
       status: "",
-     
       customerName: "",
       shippingService: "",
       
