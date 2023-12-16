@@ -11,27 +11,39 @@
 -User Authentication: Secure the system with role-based access control.
 -Responsive Design: Access the system seamlessly across various devices.
 
+## Deploy
+- https://naveen-order-management-system.netlify.app/
+
+## Login
+Example :
+1. Employee
+    - email : employee@example.com
+    - password : emp@20
+2. Admin
+    - email : admin@example.com
+    - password : admin@20
+
 
 ## Getting Started
 ### Prerequisites
 -Node.js
 -npm or Yarn
 ### Installation
-- 1.Clone the repository: 
+1.Clone the repository: 
  ```
 git clone (https://github.com/naveenkarmegam/order-management)
 ```
 
--2.Navigate to the project directory: 
+2.Navigate to the project directory: 
  ```
 cd order-management-system
 ```
 
--3.Install dependencies: 
+3.Install dependencies: 
  ```
 npm install or yarn install
 ```
--4.Start the application: 
+4.Start the application: 
  ```
 npm start or yarn start
 ```

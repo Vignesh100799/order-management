@@ -17,7 +17,7 @@ import CreateOrder from "./core/vendors/crud/CreateOrder";
 import { ToastContainer } from "react-toastify";
 import { PrivateRoute } from "./Components/User/Auth/ProtectedRoute";
 import Support from "./core/Support";
-// import EventForm from './EventForm';
+
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Frontpage />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path='/event' element={<EventForm />} /> */}
+
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
