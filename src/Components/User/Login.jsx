@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Icons/Logo";
 import { useFormik } from "formik";
@@ -6,8 +6,11 @@ import { isAuthenticated, login } from "./Auth/authService";
 import { loginValidationSchema } from "./schema/validationSchema";
 import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import './style/user.css'
+import { useDispatch, useSelector } from "react-redux";
+import { setShowPassword } from "../../features/FunctionalReducer";
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const {showPassword} = useSelector(state=>state.funactionality)
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -83,6 +86,7 @@ const Login = () => {
                         )}
                       </section>
                       <section className="form-group">
+                      <div>
                         <input
                           type={showPassword ? "text" : "password"}
                           className={`form-control form-control-user ${formik.touched.password && formik.errors.password
@@ -97,6 +101,18 @@ const Login = () => {
                           onBlur={formik.handleBlur}
                         />
                         <div>
+                        <div className="showPass">
+                          {
+                            showPassword ? <EyeSlashFill
+                              className="showPassIcon"
+                              onClick={() => dispatch(setShowPassword(!showPassword))}
+                            /> :
+                              <EyeFill
+                                className="showPassIcon"
+                                onClick={() => dispatch(setShowPassword(!showPassword))}
+                              />
+                          }
+                        </div></div>
                         {formik.touched.password &&
                           formik.errors.password && (
                             <span className="d-block ms-3 text-danger small invalid-feedback">
@@ -104,18 +120,7 @@ const Login = () => {
                             </span>
                           )}
                         </div>
-                        <div className="showPass">
-                          {
-                            showPassword ? <EyeSlashFill
-                              className="showPassIcon"
-                              onClick={() => setShowPassword(!showPassword)}
-                            /> :
-                              <EyeFill
-                                className="showPassIcon"
-                                onClick={() => setShowPassword(!showPassword)}
-                              />
-                          }
-                        </div>
+                        
                       </section>
                       <section className="form-group">
                         <section className="custom-control custom-checkbox small">

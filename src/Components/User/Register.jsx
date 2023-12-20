@@ -5,18 +5,22 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { config } from "../../config/config";
-import React, { useState } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveStep, setSkipped } from "../../features/FunctionalReducer";
 
 const Register = () => {
   const navigate = useNavigate()
-  const [activeStep, setActiveStep] = useState(0);
-  const [skipped, setSkipped] = useState(new Set());
+  const dispatch = useDispatch();
+  const {activeStep,skipped} = useSelector(state=>state.funactionality)
+  // const [activeStep, setActiveStep] = useState(0);
+  // const [skipped, setSkipped] = useState(new Set());
   const steps = [
     { label: 'Personal Information', fields: ['firstname', 'lastname', 'email','mobileNo'] },
     { label: 'Address Information', fields: ['street', 'town', 'city', 'country', 'zipcode'] },
@@ -37,15 +41,15 @@ const Register = () => {
         newSkipped = new Set(newSkipped.values());
         newSkipped.delete(activeStep);
       }
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      setSkipped(newSkipped);
+      dispatch(setActiveStep(activeStep + 1));
+      dispatch(setSkipped(newSkipped))
     } else {
       console.error("Fields are not valid. Please fill in all required fields.");
     }
   };
   
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+   dispatch(setActiveStep(activeStep - 1))
   };
 
   const formik = useFormik({

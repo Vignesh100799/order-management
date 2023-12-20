@@ -7,6 +7,9 @@ export const FunctionalSlice = createSlice({
     profileEditMode: false,
     searchInput: "",
     greetings: "",
+    activeStep: 0,
+    showPassword: false,
+    skipped: new Set()
   },
   reducers: {
     setProfileEditMode: (state, action) => {
@@ -25,6 +28,16 @@ export const FunctionalSlice = createSlice({
       state.greetings = action.payload;
       return state;
     },
+    setShowPassword:(state,action)=>{
+      state.showPassword = action.payload;
+      return state;
+    },
+    setActiveStep:(state,action)=> {
+      state.activeStep = action.payload
+    },
+    setSkipped:(state,action)=>{
+      state.skipped = action.payload
+    }
   },
 });
 
@@ -34,5 +47,8 @@ export const {
   setProfileEditMode,
   setSearchInput,
   setGreetings,
+  setShowPassword,
+  setActiveStep,
+  setSkipped
 } = FunctionalSlice.actions;
 export default FunctionalSlice.reducer;
